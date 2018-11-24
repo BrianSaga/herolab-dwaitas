@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains an assortment of things used solely for validation reporting.
+      Each thing has one or more "evalrule" scripts that verify facets of each actor
+      and report appropriate error messages if not satisfied.
+
+     If you prefer, you could instead have a small number of things with numerous
+     "evalrule" scripts associated with each. The approach used below is to have lots
+     of things with scripts targeted at a narrow purpose, but there is no reason you
+     couldn't have a few things with lots of scripts targeted as a wide range of
+     purposes. By having lots of separate things, the name of each can be leveraged
+     for use within the validation error report, which can often improve the clarity
+     and usefulness of the validation messages.
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Character points thing for validation reporting -->
+  <thing
+    id="valCP"
+    name="Character Points"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we have all CPs spent -->
+    <evalrule index="1" phase="Validate" priority="8000" severity="warning" message="Unused CPs remain"><![CDATA[
+      ~we have a negative or zero quantity left, we're good
+      validif (#resleft[resCP] <= 0)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[basics] = 0
+      ]]></evalrule>
+
+    <!-- Make sure that we don't have too many CPs spent -->
+    <evalrule index="2" phase="Validate" priority="8000" message="Too many CPs spent"><![CDATA[
+      ~we have a positive or zero quantity left, we're good
+      validif (#resleft[resCP] >= 0)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[basics] = 0
+      ]]></evalrule>
+
+    </thing>
+
+  <!-- Skill points thing for validation reporting -->
+  <thing
+    id="valSP"
+    name="Skill Points"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we have all CPs spent -->
+    <evalrule index="1" phase="Validate" priority="8000" severity="warning" message="Unused CPs remain"><![CDATA[
+      ~we have a negative or zero quantity left, we're good
+      validif (#resleft[resSP] <= 0)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[basics] = 0
+      ]]></evalrule>
+
+    <!-- Make sure that we don't have too many CPs spent -->
+    <evalrule index="2" phase="Validate" priority="8000" message="Too many SPs spent"><![CDATA[
+      ~we have a positive or zero quantity left, we're good
+      validif (#resleft[resSP] >= 0)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[basics] = 0
+      ]]></evalrule>
+
+    </thing>  
+
+  <!-- Story points thing for validation reporting -->
+  <thing
+    id="valStory"
+    name="Story Points"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we have all CPs spent -->
+    <evalrule index="1" phase="Validate" priority="8000" severity="warning" message="You must have at least one story point"><![CDATA[
+      ~we have a negative or zero quantity left, we're good
+      validif (#resmax[resStory] > 0)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[basics] = 0
+      ]]></evalrule>
+
+    </thing>
+
+  <!-- Hands thing for validation reporting -->
+  <thing
+    id="valAOE"
+    name="AOEs"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we don't have AOEs with a skill of less than 3 -->
+    <evalrule index="1" phase="Validate" priority="8000" message="Areas of Expertise require a skill of 3 or more" name="Check AOEs"><![CDATA[
+      ~make sure we have no skills with AOEs less than 3
+	  var x as number
+	  x = 0
+      foreach pick in hero from Skill where "fieldval:trtFinal < 3"
+		if (eachpick.isgizmo <> 0) then
+			var kids as number
+			kids = eachpick.gizmo.haschild[AreaOfExp]
+			if (kids > 0) then
+				x += 1
+				perform eachpick.assign[Helper.Invalid]
+			endif
+		endif
+	  nexteach
+	  validif (x = 0)
+      ~mark associated tabs as invalid
+      container.panelvalid[basics] = 0
+      ]]></evalrule>
+
+    </thing>
+
+
+
+    </document>

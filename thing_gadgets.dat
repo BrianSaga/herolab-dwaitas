@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of skills for the game system. 
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Gadget Info -->
+  <thing
+    id="GadgetInfo"
+    name="Gadget Info Thing"
+    compset="GadgetInfo"
+    isunique="yes"
+    description="Description goes here">
+    </thing>
+
+  <!-- Custom Gadget -->
+  <thing
+    id="gaCustGad"
+    name="&#150; Custom Gadget &#150;"
+    compset="Gadget"
+    isunique="no"
+    description="Description goes here">
+    <tag group="Helper" tag="CustomItem"/>
+	<child
+		entity="entGadget">
+	</child>	
+    </thing>
+
+  <!-- 51st Century “Squareness Gun” Gadget -->
+  <thing
+    id="gaSquare"
+    name="51st Century 'Squareness Gun'"
+    compset="Gadget"
+    isunique="yes"
+    description="Handy gun that deletes and restores walls and other items digitally, as used by River Song and Capt. Jack.">
+	<tag group="Gadget" tag="Major"/>
+	<child
+		entity="entGadget">
+		<bootstrap thing="abDelete"/>
+		<bootstrap thing="abRestrict">
+			<assignval field="domDomain" value="Doesn't work on living tissue"/>
+		</bootstrap>
+	</child>	
+    </thing>
+
+  <!-- Sonic Screwdriver Gadget -->
+  <thing
+    id="gaSonic"
+    name="Sonic Screwdriver"
+    compset="Gadget"
+    isunique="yes"
+    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque aliquet consequat consectetur. Ut lectus nisl, vestibulum et nisi quis, vulputate ultrices arcu. In hac habitasse platea dictumst. Aliquam posuere ipsum nec volutpat fermentum. Donec tincidunt neque tristique mollis ornare. Pellentesque vel mauris sed ligula ornare pellentesque nec sed nunc. Proin quis sem viverra justo hendrerit malesuada vel sit amet turpis. In quam augue, rhoncus eu convallis ac, lobortis quis ligula. Vestibulum auctor urna hendrerit nisi posuere consequat.">
+	<tag group="Gadget" tag="Major"/>
+	<child
+		entity="entGadget">
+		<bootstrap thing="abOpenClos"/>
+		<bootstrap thing="abRestrict">
+			<assignval field="domDomain" value="Cannot open Deadlock Seals"/>
+		</bootstrap>
+		<bootstrap thing="abRestrict">
+			<assignval field="domDomain" value="Tricky Controls"/>
+		</bootstrap>
+		<bootstrap thing="abScan"/>
+		<bootstrap thing="abTransmit"/>
+		<bootstrap thing="abWeld"/>
+	</child>	
+    </thing>
+
+  <!-- Electronic Lockpick Gadget -->
+  <thing
+    id="gaElecLock"
+    name="Electronic Lockpick"
+    compset="Gadget"
+    isunique="yes"
+    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque aliquet consequat consectetur. Ut lectus nisl, vestibulum et nisi quis, vulputate ultrices arcu. In hac habitasse platea dictumst.">
+	<tag group="Gadget" tag="Minor"/>
+	<child
+		entity="entGadget">
+		<bootstrap thing="abOpenClos"/>
+		<bootstrap thing="abRestrict">
+			<assignval field="domDomain" value="Cannot open Deadlock Seals"/>
+		</bootstrap>
+	</child>	
+    </thing>
+
+  <!-- Engineer’s Mate Gadget -->
+  <thing
+    id="gaEngMate"
+    name="Engineer's Mate"
+    compset="Gadget"
+    isunique="yes"
+    description="An electronic and futuristic swiss army knife of the tech world. Able to diagnose tech problems and helps the user to try and fix it.">
+	<tag group="Gadget" tag="Minor"/>
+	<child
+		entity="entGadget">
+		<bootstrap thing="abScan"/>
+		<bootstrap thing="abRestrict">
+			<assignval field="domDomain" value="Scans technological items only"/>
+		</bootstrap>
+		<bootstrap thing="abTechAd">
+			<autotag group="Helper" tag="Shadow"/>
+		</bootstrap>
+	</child>	
+    </thing>
+
+  <!-- Engram Eraser Gadget -->
+  <thing
+    id="gaEngramEr"
+    name="Engram Eraser"
+    compset="Gadget"
+    isunique="yes"
+    description="As used by some governments to erase memories of witnesses to extraterrestrial incidents.">
+	<tag group="Gadget" tag="Major"/>
+	<child
+		entity="entGadget">
+		<bootstrap thing="abDelete"/>
+		<bootstrap thing="abRestrict">
+			<assignval field="domDomain" value="Delete function only works on memories"/>
+		</bootstrap>
+		<bootstrap thing="abPsychic">
+			<!-- Cost on this trait is usually controlled by Psychic Training pick -->
+			<autotag group="CPCost" tag="1"/>
+		</bootstrap>
+	</child>	
+    </thing>
+
+  <!-- Psychic Paper Gadget -->
+  <thing
+    id="gaPsyPaper"
+    name="Psychic Paper"
+    compset="Gadget"
+    isunique="yes"
+    description="As used by some governments to erase memories of witnesses to extraterrestrial incidents.">
+	<tag group="Gadget" tag="Minor"/>
+	<child
+		entity="entGadget">
+		<bootstrap thing="abPsychic">
+			<!-- Cost on this trait is usually controlled by Psychic Training pick -->
+			<autotag group="CPCost" tag="2"/>
+		</bootstrap>		
+		<bootstrap thing="abRestrict">
+			<assignval field="domDomain" value="Doesn't work on the psychically trained"/>
+		</bootstrap>
+	</child>	
+    </thing>
+
+  <!-- Vortex Manipulator Gadget -->
+  <thing
+    id="gaVortex"
+    name="Vortex Manipulator"
+    compset="Gadget"
+    isunique="yes"
+    description="As used by 51st Century Time Agents. This version (bottom right) is not usually for player characters and costs 10 Story Points, more than double that of a normal Special Gadget, as its time jumping abilities are fully working. The Gamemaster may design a game around a group of characters whose only transport is with one of these, at which point the Gadget is 'free', like a TARDIS. See Chapter Four: A Big Ball of Timey-Wimey Stuff. Jack’s Vortex Manipulator is a Major Gadget version, without the Vortex Trait (though it can be activated for short periods if the story warrants it, with expenditure of Story Points).">
+	<tag group="Gadget" tag="Special"/>
+	<tag group="StoryPen" tag="10"/>
+	<child
+		entity="entGadget">
+		<bootstrap thing="abVortex">
+		</bootstrap>		
+		<bootstrap thing="abRestrict">
+			<assignval field="domDomain" value="Short Temporal Jumps only"/>
+		</bootstrap>
+		<bootstrap thing="abScan"/>
+		<bootstrap thing="abTransmit"/>
+		<bootstrap thing="abTeleport"/>
+	</child>	
+    </thing>
+
+  <!-- Superphone Gadget -->
+  <thing
+    id="gaSuperPh"
+    name="Superphone"
+    compset="Gadget"
+    isunique="yes"
+    description="">
+	<tag group="Gadget" tag="Minor"/>
+	<child
+		entity="entGadget">
+		<bootstrap thing="abRestrict">
+			<assignval field="domDomain" value="only communicates with home time period"/>
+		</bootstrap>
+		<bootstrap thing="abTransmit"/>
+	</child>	
+    </thing>
+  </document>

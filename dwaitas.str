@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the definitions of components that don't really fit anywhere
+      else, such as resources, journal entries, etc.
+-->
+
+<document signature="Hero Lab Structure">
+
+	<!-- Tech Level component
+        Each tech level derives from this component
+  -->
+  <component
+    id="TechLevel"
+    name="Technology Level"
+    autocompset="no">
+
+    <!-- Each ability needs its own identity tag to detect cascading dependencies via prereqs -->
+    <identity group="TechLevel"/>
+	
+    <!-- Track the TL on the actor by assigning the appropriate tag -->
+    <eval index="1" phase="Setup" priority="1000"><![CDATA[
+      perform forward[TechLevel.?]
+      perform forward[TL.?]
+      ]]></eval>	
+
+    </component>
+
+  <!-- Area of Expertise component
+        Used for tracking AOEs on Skills
+  -->
+  <component
+    id="AreaOfExp"
+    name="Area of Expertise"
+    autocompset="no"
+	ispublic="yes">
+	  
+	<identity group="AreaOfExp"/> 
+	  
+    <!-- Assign the tag to the container -->
+    <eval index="1" phase="Setup" priority="1000"><![CDATA[
+      perform forward[AreaOfExp.?,parent]
+      ]]></eval>	
+    </component>
+
+  <!-- Area of Expertise Info component
+        Used for tracking determining which AOEs belong on which Skills
+  -->
+  <component
+    id="AOEInfo"
+    name="Area of Expertise Info"
+    autocompset="yes"
+	ispublic="no">
+
+    <!-- Tag applied when picked -->
+    <field
+      id="aoeTagExp"
+      name="Tag Expression"
+      type="derived"
+      maxlength="200">
+      </field>
+	  
+    <!-- Build to candidate tag expression -->
+    <eval index="1" phase="Setup" priority="1000"><![CDATA[
+      if (parent.isgizmo <> 0) then
+		~set our candidate field for aoe selection
+		field[aoeTagExp].text = "OnSkill.Any | OnSkill." & parent.idstring
+		
+	  endif
+      ]]></eval>	  
+
+    </component>
+
+  <!-- GadgetInfo component
+        Used for tracking various info items on gadgets
+  -->
+  <component
+    id="GadgetInfo"
+    name="GadgetInfo"
+    autocompset="yes"
+	addbehavior="default"
+	ispublic="yes">
+
+	
+	<!-- Gadget description -->
+    <field
+      id="gdtDesc"
+      name="Gadget Description"
+      type="user"
+      maxlength="800">
+      </field>
+	  
+	<!-- Store the accrued cost of the gadget -->
+    <field
+      id="gdtCP"
+      name="Gadget Points"
+      type="derived"
+      minvalue="1">
+      </field>
+
+	<!-- Tag applied to Abilities picked for the gadget -->
+    <field
+      id="gdtTagExp"
+      name="Ability Tag Expression"
+      type="derived"
+      maxlength="200">
+      </field>
+
+	<!-- Gadget Type -->
+    <field
+      id="gdtType"
+      name="Gadget Type"
+      type="user"
+	  maxfinal="200">
+      <bound phase="Setup" priority="100" name="Bound gdtType"><![CDATA[
+        @minimum = 0
+        @maximum = 2
+        ]]></bound>	
+		<finalize><![CDATA[
+			if (@value = 0) then
+				@text = "Minor"
+			elseif (@value = 1) then
+				@text = "Major"
+			elseif (@value = 2) then
+				@text = "Special"
+			endif
+		]]></finalize>		
+      </field>
+	
+	<!-- Is Vehicle? -->
+    <field
+      id="gdtIsVeh"
+      name="Is Vehicle?"
+      type="user"
+      minvalue="0"
+	  maxvalue="1">
+	  </field>
+
+	<!-- Is Free? -->
+    <field
+      id="gdtIsFree"
+      name="Free?"
+      type="user"
+      minvalue="0"
+	  maxvalue="1">
+	  </field>
+
+	<!-- Armour Rating -->
+    <field
+      id="gdtArmour"
+      name="Armour Rating"
+      type="user"
+      minvalue="0"
+	  maxfinal="75">
+	  <finalize><![CDATA[
+		@text = "Armor: " & @value
+	  ]]></finalize>
+	  </field>
+
+	<!-- Hit Capacity -->
+    <field
+      id="gdtHitCap"
+      name="Hit Capacity"
+      type="user"
+      minvalue="0"
+	  maxfinal="75">
+	  <finalize><![CDATA[
+		@text = "Hit: " & @value
+	  ]]></finalize>
+      </field>
+
+	<!-- Speed -->
+    <field
+      id="gdtSpeed"
+      name="Speed"
+      type="user"
+      minvalue="0"
+	  maxfinal="75">
+	  <finalize><![CDATA[
+		@text = "Speed: " & @value
+	  ]]></finalize>
+      </field>	
+	
+	<!-- Custom cost -->
+    <field
+      id="gdtStory"
+      name="Custom Story"
+      type="user"
+      minvalue="0">
+      </field>
+	  
+    <!-- Build to candidate tag expression -->
+    <eval index="1" phase="Setup" priority="100" name="Calc gdtType"><![CDATA[
+		~set our tag expression
+		field[gdtTagExp].text = "Ability.?"
+		if (parent.tagis[Gadget.Minor] <> 0) then
+			trustme
+			field[gdtType].value = 0
+		elseif (parent.tagis[Gadget.Major] <> 0) then
+			trustme
+			field[gdtType].value = 1
+		elseif (parent.tagis[Gadget.Special] <> 0) then
+			trustme
+			field[gdtType].value = 2
+		endif
+		
+		~if this is a vehicle, apply the tag
+		if (field[gdtIsVeh].value <> 0) then
+			perform parent.assign[User.Vehicle]
+		endif
+		
+		~copy descrition
+		if (parent.isgizmo <> 0) then
+			if (field[gdtDesc].isempty = 1) then
+				trustme
+				field[gdtDesc].text = parent.field[descript].text
+			endif
+		endif
+		
+		~if there is a custom cost, apply the tag to the gadget
+		~but not if it's free
+		if (field[gdtIsFree].value = 1) then
+			perform parent.assign[Helper.IsFree]
+		elseif (field[gdtStory].value > 0) then
+			var val as number
+			val = field[gdtStory].value
+			perform parent.assignstr["StoryPen." & val] 
+		endif
+      ]]></eval>  
+
+	  <!-- Set default on gdtType -->
+    <eval index="2" phase="Setup" priority="1000" name="Calc gdtCP"><![CDATA[
+		~get the field value from the points
+		    var val as number
+			if (parent.isgizmo <> 0) then	
+				if (field[gdtType].value = 0) then
+					perform parent.delete[Gadget.Major]
+					perform parent.delete[Gadget.Special]
+					perform parent.assign[Gadget.Minor]
+					val = 1
+				elseif (field[gdtType].value = 1) then
+					perform parent.delete[Gadget.Minor]
+					perform parent.delete[Gadget.Special]			
+					perform parent.assign[Gadget.Major]
+					val = 2
+				elseif (field[gdtType].value = 2) then
+					perform parent.delete[Gadget.Minor]
+					perform parent.delete[Gadget.Major]
+					perform parent.assign[Gadget.Special]				
+					val = 4
+				endif
+				field[gdtCP].value = val
+			endif
+      ]]></eval>  
+
+    </component>
+
+  <!-- Gadget component
+        Attaches the gizmo that comprises gadget traits and GadgetInfo
+  -->
+  <component
+    id="Gadget"
+    name="Gadget"
+    autocompset="no"
+	addbehavior="default"
+	ispublic="yes">
+	
+	<!-- Pay for the gadget in story points -->
+	<eval index="1" phase="Final" priority="10000" name="Calc Gadget Cost"><![CDATA[
+		doneif (tagis[Helper.IsFree] <> 0)
+		if (tagis[StoryPen.?] <> 0) then
+			#resmax[resStory] -= tagvalue[StoryPen.?]
+			#resleft[resStory] -= tagvalue[StoryPen.?]
+		else
+			if (tagis[Gadget.Minor] <> 0) then
+				#resmax[resStory] -= 1
+				#resleft[resStory] -= 1
+			elseif (tagis[Gadget.Major] <> 0) then
+				#resmax[resStory] -= 2
+				#resleft[resStory] -= 2
+			elseif (tagis[Gadget.Special] <> 0) then
+				#resmax[resStory] -= 4
+				#resleft[resStory] -= 4
+			endif
+		endif
+    ]]></eval>  
+	
+    </component>
+
+  <!-- AreaOfExp - all AOEs utilize this compset -->
+  <compset
+    id="AreaOfExp">
+    <compref component="AreaOfExp"/>
+    <compref component="Custom"/>
+    <compref component="Domain"/>
+    <compref component="UserSelect"/>
+    </compset>
+
+  <!-- Gadget - all Gadgets utilize this compset -->
+  <compset
+    id="Gadget">
+    <compref component="Gadget"/>
+    <compref component="Custom"/>
+    <compref component="Domain"/>
+    <compref component="UserSelect"/>
+    </compset>
+	
+  <!-- TechLevel - all Tech Levels derive from this compset -->
+  <compset
+    id="TechLevel"
+    forceunique="yes">
+    <compref component="TechLevel"/>
+    </compset>
+
+  <!-- Entity for bootstrapping gadgets to things -->
+   <entity
+	  id="entGadget"
+	  form="gadget"
+	  defaultthing="GadgetInfo">
+	  <bootstrap thing="GadgetInfo"/>	  
+	  <bootstrap thing="resGadCP"/>
+	  <bootstrap thing="resGadStor"/>
+	  <bootstrap thing="trkGadStor"/>
+	  <bootstrap thing="mscGadImg"/>
+	</entity>
+
+  <!-- Entity for bootstrapping area of expertise to skills -->
+   <entity
+	  id="entAOE"
+	  form="aoe"
+	  defaultthing="aoeHelper">
+	  <bootstrap thing="aoeHelper"/>
+	</entity>		
+  </document>

@@ -1,0 +1,2296 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of special abilities for the game system.
+      Abilities confer their effects through scripts that apply the necessary changes
+      to the appropriate traits.
+
+      Abilities influence traits, so all adjustments must be applied prior to when the
+      final trait value is calculated. The script timing used below (PreTraits/5000)
+      ensures that we satisfy this requirement. All abilities should be designated as
+      "unique" so that they can only be selected a single time by the user.
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Animal Friendship Trait -->
+  <thing
+    id="abAnimal"
+    name="Animal Friendship"
+    compset="Ability"
+    isunique="yes"
+    description="Description goes here">
+
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="Menu1"/>
+    <arrayval field="usrArray" index="0" value="Choice #1"/>
+    <arrayval field="usrArray" index="1" value="Choice #2"/>
+    <arrayval field="usrArray" index="2" value="Choice #3"/>
+    -->
+
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Minor"/>
+    <tag group="Trait" tag="Good"/>
+	
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>
+    
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+
+<!-- Attractive Trait -->
+  <thing
+    id="abAttract"
+    name="Attractive"
+    compset="Ability"
+    isunique="yes"
+    description="Description goes here">
+
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="Menu1"/>
+    <arrayval field="usrArray" index="0" value="Choice #1"/>
+    <arrayval field="usrArray" index="1" value="Choice #2"/>
+    <arrayval field="usrArray" index="2" value="Choice #3"/>
+    -->
+
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Minor"/>
+    <tag group="Trait" tag="Good"/>
+	
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>	
+    
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability -->
+    <exprreq iserror="yes" message="Cannot be taken with the Unattractive trait."><![CDATA[#traitfound[abUnattrac] = 0]]></exprreq>
+    
+
+    </thing>
+	
+  <!-- Boffin Trait -->
+  <thing
+    id="abBoffin"
+    name="Boffin"
+    compset="Ability"
+    isunique="yes"
+    description="Description goes here">
+
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="Menu1"/>
+    <arrayval field="usrArray" index="0" value="Choice #1"/>
+    <arrayval field="usrArray" index="1" value="Choice #2"/>
+    <arrayval field="usrArray" index="2" value="Choice #3"/>
+    -->
+
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Major"/>
+    <tag group="Trait" tag="Good"/>
+    
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>
+	
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability -->
+    <exprreq iserror="yes" message="Cannot be taken with the Technically Inept trait."><![CDATA[#traitfound[abTchInept] = 0]]></exprreq>
+
+    </thing>
+
+<!-- Brave Trait -->
+  <thing
+    id="abBrave"
+    name="Brave"
+    compset="Ability"
+    isunique="yes"
+    description="Description goes here">
+
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="Menu1"/>
+    <arrayval field="usrArray" index="0" value="Choice #1"/>
+    <arrayval field="usrArray" index="1" value="Choice #2"/>
+    <arrayval field="usrArray" index="2" value="Choice #3"/>
+    -->
+
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Minor"/>
+    <tag group="Trait" tag="Good"/>
+    
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>	
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability -->
+    <exprreq iserror="yes" message="Cannot be taken with the Cowardly trait."><![CDATA[#traitfound[abCowardly] = 0]]></exprreq>
+
+    </thing>
+	
+<!-- Charming Trait -->
+  <thing
+    id="abCharming"
+    name="Charming"
+    compset="Ability"
+    isunique="yes"
+    description="Description goes here">
+
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="Menu1"/>
+    <arrayval field="usrArray" index="0" value="Choice #1"/>
+    <arrayval field="usrArray" index="1" value="Choice #2"/>
+    <arrayval field="usrArray" index="2" value="Choice #3"/>
+    -->
+
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Minor"/>
+    <tag group="Trait" tag="Good"/>
+    
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>
+	
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+	
+<!-- Empathic Trait -->
+  <thing
+    id="abEmpathic"
+    name="Empathic"
+    compset="Ability"
+    isunique="yes"
+    description="Description goes here">
+
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="Menu1"/>
+    <arrayval field="usrArray" index="0" value="Choice #1"/>
+    <arrayval field="usrArray" index="1" value="Choice #2"/>
+    <arrayval field="usrArray" index="2" value="Choice #3"/>
+    -->
+
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Minor"/>
+    <tag group="Trait" tag="Good"/>
+    
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>	
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+	
+<!-- Face in the Crowd Trait -->
+  <thing
+    id="abFace"
+    name="Face in the Crowd"
+    compset="Ability"
+    isunique="yes"
+    description="Description goes here">
+
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="Menu1"/>
+    <arrayval field="usrArray" index="0" value="Choice #1"/>
+    <arrayval field="usrArray" index="1" value="Choice #2"/>
+    <arrayval field="usrArray" index="2" value="Choice #3"/>
+    -->
+
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Minor"/>
+    <tag group="Trait" tag="Good"/>
+	
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>	
+    
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability -->
+    <exprreq iserror="yes" message="Cannot be taken with the Distinctive Bad Trait."><![CDATA[#traitfound[abDistinct] = 0]]></exprreq>
+
+    </thing>
+	
+<!-- Fast Healing Trait -->
+  <thing
+    id="abFastHeal"
+    name="Fast Healing"
+    compset="Ability"
+    isunique="yes"
+    description="Description goes here">
+
+	<!-- Set this field if there are multiple ways this trait can be taken -->
+	<fieldval field="abilType" value="Major/Special Good"/>
+	
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.-->
+    <fieldval field="usrLabelAr" value="type:"/>
+    <arrayval field="usrArray" index="0" value="Major"/>
+    <arrayval field="usrArray" index="1" value="Special"/>
+    
+
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Major"/>
+    <tag group="Trait" tag="Good"/>
+	
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>
+    
+    <!-- Change our tags on this trait based on menu selection -->
+    <eval value="1" phase="Setup" priority="4000"><![CDATA[
+		~only do this at creation
+		doneif (state.iscreate = 0)
+		
+		if (compare(field[usrSelect].text,field[usrArray].arraytext[0]) = 0) then
+			~remove the special tag
+			perform delete[Trait.Special]
+			perform delete[CPCost.?]
+			perform delete[StoryCost.?]
+			
+			~assign the major tag
+			perform assign[Trait.Major]
+			
+		elseif (compare(field[usrSelect].text,field[usrArray].arraytext[1]) = 0) then
+			~remove the default tag
+			perform delete[Trait.Major]
+			
+			~assign the special tag and cost tags
+			perform assign[Trait.Special]
+			perform assign[CPCost.6]
+			perform assign[StoryCost.6]
+			
+		endif
+		
+	]]></eval>
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="2" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+	
+<!-- Friends Trait -->
+  <thing
+    id="abFriends"
+    name="Friends"
+    compset="Ability"
+    isunique="yes"
+    description="Description goes here">
+
+	<!-- Set this field if there are multiple ways this trait can be taken -->
+	<fieldval field="abilType" value="Minor/Major Good"/>	
+	
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate. -->
+    <fieldval field="usrLabelAr" value="type:"/>
+    <arrayval field="usrArray" index="0" value="Minor"/>
+    <arrayval field="usrArray" index="1" value="Major"/>
+   
+
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Minor"/>
+    <tag group="Trait" tag="Good"/>
+
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>	
+    
+	<!-- Add a domain -->
+	<tag group="User" tag="NeedDomain"/>
+	
+    <!-- Change our tags on this trait based on menu selection -->
+    <eval value="1" phase="Setup" priority="4000"><![CDATA[
+		~only do this at creation
+		doneif (state.iscreate = 0)
+		
+		if (compare(field[usrSelect].text,field[usrArray].arraytext[0]) = 0) then
+			~remove the special tag
+			perform delete[Trait.Major]
+			
+			~assign the minor tag
+			perform assign[Trait.Minor]
+			
+		elseif (compare(field[usrSelect].text,field[usrArray].arraytext[1]) = 0) then
+			~remove the default tag
+			perform delete[Trait.Minor]
+			
+			~assign the special tag and cost tags
+			perform assign[Trait.Major]
+			
+		endif
+		
+	]]></eval>
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="2" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+	
+<!-- Hypnosis Trait -->
+  <thing
+    id="abHypnosis"
+    name="Hypnosis"
+    compset="Ability"
+    isunique="yes"
+    description="Description goes here">
+
+	<!-- Set this field if there are multiple ways this trait can be taken -->
+	<fieldval field="abilType" value="Minor/Major/Special Good"/>
+	
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate. -->
+    <fieldval field="usrLabelAr" value="type:"/>
+    <arrayval field="usrArray" index="0" value="Minor"/>
+    <arrayval field="usrArray" index="1" value="Major"/>
+    <arrayval field="usrArray" index="2" value="Special"/>
+   
+
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Minor"/>
+    <tag group="Trait" tag="Good"/>
+	
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>	
+    
+	<!-- Add a domain 
+	<tag group="User" tag="NeedDomain"/>
+	-->
+	
+    <!-- Change our tags on this trait based on menu selection -->
+    <eval value="1" phase="Setup" priority="4000"><![CDATA[
+		~only do this at creation
+		doneif (state.iscreate = 0)
+		
+		if (compare(field[usrSelect].text,field[usrArray].arraytext[0]) = 0) then
+			~remove the special tag
+			perform delete[Trait.Major]
+			perform delete[Trait.Special]
+			
+			~assign the minor tag
+			perform assign[Trait.Minor]
+			
+		elseif (compare(field[usrSelect].text,field[usrArray].arraytext[1]) = 0) then
+			~remove the default tag
+			perform delete[Trait.Minor]
+			perform delete[Trait.Special]
+			
+			~assign the special tag and cost tags
+			perform assign[Trait.Major]
+		
+		elseif (compare(field[usrSelect].text,field[usrArray].arraytext[2]) = 0) then
+			~remove the default tag
+			perform delete[Trait.Minor]
+			perform delete[Trait.Major]
+			
+			~assign the special tag and cost tags
+			perform assign[Trait.Special]
+			perform assign[CPCost.3]
+			
+		endif
+		
+	]]></eval>
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="2" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+	
+<!-- Indomitable Trait -->
+  <thing
+    id="abIndomit"
+    name="Indomitable"
+    compset="Ability"
+    isunique="yes"
+    description="Description goes here">
+
+	<!-- Set this field if there are multiple ways this trait can be taken 
+	<fieldval field="abilType" value="Minor/Major/Special Good"/>
+	-->
+	
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate. 
+    <fieldval field="usrLabelAr" value="type:"/>
+    <arrayval field="usrArray" index="0" value="Minor"/>
+    <arrayval field="usrArray" index="1" value="Major"/>
+    <arrayval field="usrArray" index="2" value="Special"/>
+   -->
+
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Major"/>
+    <tag group="Trait" tag="Good"/>
+	
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>	
+    
+	<!-- Add a domain 
+	<tag group="User" tag="NeedDomain"/>
+	-->
+	
+    <!-- Change our tags on this trait based on menu selection 
+    <eval value="1" phase="Setup" priority="4000"><![CDATA[
+		~only do this at creation
+		doneif (state.iscreate = 0)
+		
+		if (compare(field[usrSelect].text,field[usrArray].arraytext[0]) = 0) then
+			~remove the special tag
+			perform delete[Trait.Major]
+			perform delete[Trait.Special]
+			
+			~assign the minor tag
+			perform assign[Trait.Minor]
+			
+		elseif (compare(field[usrSelect].text,field[usrArray].arraytext[1]) = 0) then
+			~remove the default tag
+			perform delete[Trait.Minor]
+			perform delete[Trait.Special]
+			
+			~assign the special tag and cost tags
+			perform assign[Trait.Major]
+		
+		elseif (compare(field[usrSelect].text,field[usrArray].arraytext[2]) = 0) then
+			~remove the default tag
+			perform delete[Trait.Minor]
+			perform delete[Trait.Major]
+			
+			~assign the special tag and cost tags
+			perform assign[Trait.Special]
+			perform assign[CPCost.3]
+			
+		endif
+		
+	]]></eval>
+	-->
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="2" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+	
+<!-- Keen Senses Trait -->
+  <thing
+    id="abKeenSen"
+    name="Keen Senses"
+    compset="Ability"
+    isunique="yes"
+    description="Description goes here">
+
+	<!-- Set this field if there are multiple ways this trait can be taken -->
+	<fieldval field="abilType" value="Minor/Major Good"/>
+	
+	
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate. -->
+    <fieldval field="usrLabelAr" value="type:"/>
+    <arrayval field="usrArray" index="0" value="Minor"/>
+    <arrayval field="usrArray" index="1" value="Major"/>
+	
+	<!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Minor"/>
+    <tag group="Trait" tag="Good"/>
+	
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>	
+    
+	<!-- Add a domain -->
+	<tag group="User" tag="NeedDomain"/>
+	
+	
+    <!-- Change our tags on this trait based on menu selection -->
+    <eval value="1" phase="Setup" priority="4000"><![CDATA[
+		~only do this at creation
+		doneif (state.iscreate = 0)
+		
+		if (compare(field[usrSelect].text,field[usrArray].arraytext[0]) = 0) then
+			~remove the special tag
+			perform delete[Trait.Major]
+			perform delete[Trait.Special]
+			
+			~assign the minor tag
+			perform assign[Trait.Minor]
+			
+		elseif (compare(field[usrSelect].text,field[usrArray].arraytext[1]) = 0) then
+			~remove the default tag
+			perform delete[Trait.Minor]
+			perform delete[Trait.Special]
+			perform delete[User.NeedDomain]
+			
+			~reset the domain field, since we don't need it for the major trait version
+			trustme
+			perform field[domDomain].reset
+			
+			~assign the major tag and cost tags
+			perform assign[Trait.Major]
+			
+		endif
+		
+	]]></eval>
+	
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="2" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+	
+<!-- Lucky Trait -->
+  <thing
+    id="abLucky"
+    name="Lucky"
+    compset="Ability"
+    isunique="yes"
+    description="Description goes here">
+
+	<!-- Set this field if there are multiple ways this trait can be taken
+			Otherwise, the tags defined below will handle the portal value
+	<fieldval field="abilType" value="Minor/Major Good"/>
+	-->
+	
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="type:"/>
+    <arrayval field="usrArray" index="0" value="Minor"/>
+    <arrayval field="usrArray" index="1" value="Major"/>
+	 -->
+	 
+	<!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Minor"/>
+    <tag group="Trait" tag="Good"/>
+	
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>	
+    
+	<!-- Add a domain 
+	<tag group="User" tag="NeedDomain"/>
+	-->
+	
+    <!-- Change our tags on this trait based on menu selection 
+    <eval value="1" phase="Setup" priority="4000"><![CDATA[
+		~only do this at creation
+		doneif (state.iscreate = 0)
+		
+		if (compare(field[usrSelect].text,field[usrArray].arraytext[0]) = 0) then
+			~remove the special tag
+			perform delete[Trait.Major]
+			perform delete[Trait.Special]
+			
+			~assign the minor tag
+			perform assign[Trait.Minor]
+			
+		elseif (compare(field[usrSelect].text,field[usrArray].arraytext[1]) = 0) then
+			~remove the default tag
+			perform delete[Trait.Minor]
+			perform delete[Trait.Special]
+			perform delete[User.NeedDomain]
+			
+			~reset the domain field, since we don't need it for the major trait version
+			trustme
+			perform field[domDomain].reset
+			
+			~assign the major tag and cost tags
+			perform assign[Trait.Major]
+			
+		endif
+		
+	]]></eval>
+	-->
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="2" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+
+<!-- Owed Favour Trait -->
+  <thing
+    id="abOwedFav"
+    name="Owed Favour"
+    compset="Ability"
+    isunique="no"
+    description="Description goes here">
+
+	<!-- Set this field if there are multiple ways this trait can be taken
+			Otherwise, the tags defined below will handle the portal value -->
+	<fieldval field="abilType" value="Minor/Major Good"/>
+	
+	
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.-->
+    <fieldval field="usrLabelAr" value="type:"/>
+    <arrayval field="usrArray" index="0" value="Minor"/>
+    <arrayval field="usrArray" index="1" value="Major"/>
+	 
+	 
+	<!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Minor"/>
+    <tag group="Trait" tag="Good"/>
+	
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>	
+    
+	<!-- Add a domain -->
+	<tag group="User" tag="NeedDomain"/>
+	
+	
+    <!-- Change our tags on this trait based on menu selection -->
+    <eval value="1" phase="Setup" priority="4000"><![CDATA[
+		~only do this at creation
+		doneif (state.iscreate = 0)
+		
+		if (compare(field[usrSelect].text,field[usrArray].arraytext[0]) = 0) then
+			~remove the special tag
+			perform delete[Trait.Major]
+			
+			~assign the minor tag
+			perform assign[Trait.Minor]
+			
+		elseif (compare(field[usrSelect].text,field[usrArray].arraytext[1]) = 0) then
+			~remove the default tag
+			perform delete[Trait.Minor]
+			
+			~assign the major tag and any non-standard cost tags
+			perform assign[Trait.Major]
+			
+		endif
+		
+	]]></eval>
+	
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="2" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+	
+<!-- Photographic Memory Trait -->
+  <thing
+    id="abPhotoMem"
+    name="Photographic Memory"
+    compset="Ability"
+    isunique="yes"
+    description="Description goes here">
+
+	<!-- Set this field if there are multiple ways this trait can be taken
+			Otherwise, the tags defined below will handle the portal value
+	<fieldval field="abilType" value="Minor/Major Good"/>
+	 -->
+	
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="type:"/>
+    <arrayval field="usrArray" index="0" value="Minor"/>
+    <arrayval field="usrArray" index="1" value="Major"/>
+	 -->
+	 
+	<!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Major"/>
+    <tag group="Trait" tag="Good"/>
+	
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>	
+    
+	<!-- Add a domain
+	<tag group="User" tag="NeedDomain"/>
+	 -->
+	
+    <!-- Change our tags on this trait based on menu selection 
+    <eval value="1" phase="Setup" priority="4000"><![CDATA[
+		~only do this at creation
+		doneif (state.iscreate = 0)
+		
+		if (compare(field[usrSelect].text,field[usrArray].arraytext[0]) = 0) then
+			~remove the special tag
+			perform delete[Trait.Major]
+			
+			~assign the minor tag
+			perform assign[Trait.Minor]
+			
+		elseif (compare(field[usrSelect].text,field[usrArray].arraytext[1]) = 0) then
+			~remove the default tag
+			perform delete[Trait.Minor]
+			
+			~assign the major tag and any non-standard cost tags
+			perform assign[Trait.Major]
+			
+		endif
+		
+	]]></eval>
+	-->
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="2" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability  -->
+    <exprreq iserror="yes" message="Cannot be taken with the Forgetful Bad Trait."><![CDATA[#traitfound[abForget] = 0]]></exprreq>
+ 
+
+    </thing>
+	
+<!-- Psychic Training Trait -->
+  <thing
+    id="abPsyTrain"
+    name="Psychic Training"
+    compset="Ability"
+    isunique="yes"
+    description="Description goes here">
+
+	<!-- Set this field if there are multiple ways this trait can be taken
+			Otherwise, the tags defined below will handle the portal value
+	<fieldval field="abilType" value="Minor/Major Good"/>
+	 -->
+	
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="type:"/>
+    <arrayval field="usrArray" index="0" value="Minor"/>
+    <arrayval field="usrArray" index="1" value="Major"/>
+	 -->
+	 
+	<!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Major"/>
+    <tag group="Trait" tag="Good"/>
+	
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>	
+    
+	<!-- Add a domain
+	<tag group="User" tag="NeedDomain"/>
+	 -->
+	
+    <!-- Change our tags on this trait based on menu selection 
+    <eval value="1" phase="Setup" priority="4000"><![CDATA[
+		~only do this at creation
+		doneif (state.iscreate = 0)
+		
+		if (compare(field[usrSelect].text,field[usrArray].arraytext[0]) = 0) then
+			~remove the special tag
+			perform delete[Trait.Major]
+			
+			~assign the minor tag
+			perform assign[Trait.Minor]
+			
+		elseif (compare(field[usrSelect].text,field[usrArray].arraytext[1]) = 0) then
+			~remove the default tag
+			perform delete[Trait.Minor]
+			
+			~assign the major tag and any non-standard cost tags
+			perform assign[Trait.Major]
+			
+		endif
+		
+	]]></eval>
+	-->
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="2" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+	
+<!-- Quick Reflexes Trait -->
+  <thing
+    id="abQuickRef"
+    name="Quick Reflexes"
+    compset="Ability"
+    isunique="yes"
+    description="Description goes here">
+
+	<!-- Set this field if there are multiple ways this trait can be taken
+			Otherwise, the tags defined below will handle the portal value
+	<fieldval field="abilType" value="Minor/Major Good"/>
+	 -->
+	
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="type:"/>
+    <arrayval field="usrArray" index="0" value="Minor"/>
+    <arrayval field="usrArray" index="1" value="Major"/>
+	 -->
+	 
+	<!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Minor"/>
+    <tag group="Trait" tag="Good"/>
+	
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>	
+    
+	<!-- Add a domain
+	<tag group="User" tag="NeedDomain"/>
+	 -->
+	
+    <!-- Change our tags on this trait based on menu selection 
+    <eval value="1" phase="Setup" priority="4000"><![CDATA[
+		~only do this at creation
+		doneif (state.iscreate = 0)
+		
+		if (compare(field[usrSelect].text,field[usrArray].arraytext[0]) = 0) then
+			~remove the special tag
+			perform delete[Trait.Major]
+			
+			~assign the minor tag
+			perform assign[Trait.Minor]
+			
+		elseif (compare(field[usrSelect].text,field[usrArray].arraytext[1]) = 0) then
+			~remove the default tag
+			perform delete[Trait.Minor]
+			
+			~assign the major tag and any non-standard cost tags
+			perform assign[Trait.Major]
+			
+		endif
+		
+	]]></eval>
+	-->
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="2" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability -->
+    <exprreq iserror="yes" message="Cannot be taken with the Slow Reflexes Bad Trait."><![CDATA[#traitfound[abSlowRef] = 0]]></exprreq>
+    
+
+    </thing>
+	
+<!-- Resourceful Pockets Trait -->
+  <thing
+    id="abResPock"
+    name="Resourceful Pockets"
+    compset="Ability"
+    isunique="yes"
+    description="Description goes here">
+
+	<!-- Set this field if there are multiple ways this trait can be taken
+			Otherwise, the tags defined below will handle the portal value
+	<fieldval field="abilType" value="Minor/Major Good"/>
+	 -->
+	
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="type:"/>
+    <arrayval field="usrArray" index="0" value="Minor"/>
+    <arrayval field="usrArray" index="1" value="Major"/>
+	 -->
+	 
+	<!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Minor"/>
+    <tag group="Trait" tag="Good"/>
+	
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>	
+    
+	<!-- Add a domain
+	<tag group="User" tag="NeedDomain"/>
+	 -->
+	
+    <!-- Change our tags on this trait based on menu selection 
+    <eval value="1" phase="Setup" priority="4000"><![CDATA[
+		~only do this at creation
+		doneif (state.iscreate = 0)
+		
+		if (compare(field[usrSelect].text,field[usrArray].arraytext[0]) = 0) then
+			~remove the special tag
+			perform delete[Trait.Major]
+			
+			~assign the minor tag
+			perform assign[Trait.Minor]
+			
+		elseif (compare(field[usrSelect].text,field[usrArray].arraytext[1]) = 0) then
+			~remove the default tag
+			perform delete[Trait.Minor]
+			
+			~assign the major tag and any non-standard cost tags
+			perform assign[Trait.Major]
+			
+		endif
+		
+	]]></eval>
+	-->
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="2" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+	
+<!-- Run for your Life! Trait -->
+  <thing
+    id="abRunFor"
+    name="Run for your Life!"
+    compset="Ability"
+    isunique="yes"
+    description="Description goes here">
+
+	<!-- Set this field if there are multiple ways this trait can be taken
+			Otherwise, the tags defined below will handle the portal value
+	<fieldval field="abilType" value="Minor/Major Good"/>
+	 -->
+	
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="type:"/>
+    <arrayval field="usrArray" index="0" value="Minor"/>
+    <arrayval field="usrArray" index="1" value="Major"/>
+	 -->
+	 
+	<!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Minor"/>
+    <tag group="Trait" tag="Good"/>
+	
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>	
+    
+	<!-- Add a domain
+	<tag group="User" tag="NeedDomain"/>
+	 -->
+	
+    <!-- Change our tags on this trait based on menu selection 
+    <eval value="1" phase="Setup" priority="4000"><![CDATA[
+		~only do this at creation
+		doneif (state.iscreate = 0)
+		
+		if (compare(field[usrSelect].text,field[usrArray].arraytext[0]) = 0) then
+			~remove the special tag
+			perform delete[Trait.Major]
+			
+			~assign the minor tag
+			perform assign[Trait.Minor]
+			
+		elseif (compare(field[usrSelect].text,field[usrArray].arraytext[1]) = 0) then
+			~remove the default tag
+			perform delete[Trait.Minor]
+			
+			~assign the major tag and any non-standard cost tags
+			perform assign[Trait.Major]
+			
+		endif
+		
+	]]></eval>
+	-->
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="2" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+	
+<!-- Screamer! Trait -->
+  <thing
+    id="abScreamer"
+    name="Screamer!"
+    compset="Ability"
+    isunique="yes"
+    description="Description goes here">
+
+	<!-- Set this field if there are multiple ways this trait can be taken
+			Otherwise, the tags defined below will handle the portal value
+	<fieldval field="abilType" value="Minor/Major Good"/>
+	 -->
+	
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="type:"/>
+    <arrayval field="usrArray" index="0" value="Minor"/>
+    <arrayval field="usrArray" index="1" value="Major"/>
+	 -->
+	 
+	<!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Minor"/>
+    <tag group="Trait" tag="Good"/>
+	
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>	
+    
+	<!-- Add a domain
+	<tag group="User" tag="NeedDomain"/>
+	 -->
+	
+    <!-- Change our tags on this trait based on menu selection 
+    <eval value="1" phase="Setup" priority="4000"><![CDATA[
+		~only do this at creation
+		doneif (state.iscreate = 0)
+		
+		if (compare(field[usrSelect].text,field[usrArray].arraytext[0]) = 0) then
+			~remove the special tag
+			perform delete[Trait.Major]
+			
+			~assign the minor tag
+			perform assign[Trait.Minor]
+			
+		elseif (compare(field[usrSelect].text,field[usrArray].arraytext[1]) = 0) then
+			~remove the default tag
+			perform delete[Trait.Minor]
+			
+			~assign the major tag and any non-standard cost tags
+			perform assign[Trait.Major]
+			
+		endif
+		
+	]]></eval>
+	-->
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="2" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+	
+<!-- Sense of Direction Trait -->
+  <thing
+    id="abSenseDir"
+    name="Sense of Direction"
+    compset="Ability"
+    isunique="yes"
+    description="Description goes here">
+
+	<!-- Set this field if there are multiple ways this trait can be taken
+			Otherwise, the tags defined below will handle the portal value
+	<fieldval field="abilType" value="Minor/Major Good"/>
+	 -->
+	
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="type:"/>
+    <arrayval field="usrArray" index="0" value="Minor"/>
+    <arrayval field="usrArray" index="1" value="Major"/>
+	 -->
+	 
+	<!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Minor"/>
+    <tag group="Trait" tag="Good"/>
+	
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>	
+    
+	<!-- Add a domain
+	<tag group="User" tag="NeedDomain"/>
+	 -->
+	
+    <!-- Change our tags on this trait based on menu selection 
+    <eval value="1" phase="Setup" priority="4000"><![CDATA[
+		~only do this at creation
+		doneif (state.iscreate = 0)
+		
+		if (compare(field[usrSelect].text,field[usrArray].arraytext[0]) = 0) then
+			~remove the special tag
+			perform delete[Trait.Major]
+			
+			~assign the minor tag
+			perform assign[Trait.Minor]
+			
+		elseif (compare(field[usrSelect].text,field[usrArray].arraytext[1]) = 0) then
+			~remove the default tag
+			perform delete[Trait.Minor]
+			
+			~assign the major tag and any non-standard cost tags
+			perform assign[Trait.Major]
+			
+		endif
+		
+	]]></eval>
+	-->
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="2" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+	
+<!-- Technically Adept Trait -->
+  <thing
+    id="abTechAd"
+    name="Technically Adept"
+    compset="Ability"
+    isunique="yes"
+    description="Description goes here">
+
+	<!-- Set this field if there are multiple ways this trait can be taken
+			Otherwise, the tags defined below will handle the portal value
+	<fieldval field="abilType" value="Minor/Major Good"/>
+	 -->
+	
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="type:"/>
+    <arrayval field="usrArray" index="0" value="Minor"/>
+    <arrayval field="usrArray" index="1" value="Major"/>
+	 -->
+	 
+	<!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Minor"/>
+    <tag group="Trait" tag="Good"/>
+	
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>	
+    
+	<!-- Add a domain
+	<tag group="User" tag="NeedDomain"/>
+	 -->
+	
+    <!-- Change our tags on this trait based on menu selection 
+    <eval value="1" phase="Setup" priority="4000"><![CDATA[
+		~only do this at creation
+		doneif (state.iscreate = 0)
+		
+		if (compare(field[usrSelect].text,field[usrArray].arraytext[0]) = 0) then
+			~remove the special tag
+			perform delete[Trait.Major]
+			
+			~assign the minor tag
+			perform assign[Trait.Minor]
+			
+		elseif (compare(field[usrSelect].text,field[usrArray].arraytext[1]) = 0) then
+			~remove the default tag
+			perform delete[Trait.Minor]
+			
+			~assign the major tag and any non-standard cost tags
+			perform assign[Trait.Major]
+			
+		endif
+		
+	]]></eval>
+	-->
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="2" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability -->
+    <exprreq iserror="yes" message="Cannot be taken with the Technically Inept Bad Trait."><![CDATA[#traitfound[abTchInept] = 0]]></exprreq>
+
+    </thing>
+	
+<!-- Time Traveller Trait -->
+  <thing
+    id="abTimeTrav"
+    name="Time Traveller"
+    compset="Ability"
+    isunique="no"
+    description="Description goes here">
+
+	<!-- Set this field if there are multiple ways this trait can be taken
+			Otherwise, the tags defined below will handle the portal value -->
+	<fieldval field="abilType" value="Minor/Major Good"/>
+	
+	
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate. -->
+    <fieldval field="usrLabel1" value="TL:"/>
+   
+ 
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate. 
+    <fieldval field="usrLabelAr" value="type:"/>
+    <arrayval field="usrArray" index="0" value="Minor"/>
+    <arrayval field="usrArray" index="1" value="Major"/>
+	-->
+	
+	<tag group="ChooseSrc1" tag="Thing"/>
+	
+	<!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Minor"/>
+    <tag group="Trait" tag="Good"/>
+	
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>	
+    
+	<!-- Add a domain
+	<tag group="User" tag="NeedDomain"/>
+	-->
+	
+    <!-- Change our tags on this trait based on menu selection -->
+    <eval value="1" phase="Setup" priority="4000"><![CDATA[
+		~only do this at creation
+		doneif (state.iscreate = 0)
+		var menutl as number
+		var mytl as number
+		
+		menutl = field[usrChosen1].chosen.tagvalue[TL.?]
+		mytl = hero.tagvalue[TL.?]
+		
+		~ Set the candidate field such that we remove the native tech level from the menu
+		field[usrCandid1].text = "(component.TechLevel) & !TL." & mytl  
+
+		if (menutl < mytl) then
+			~remove the special tag
+			perform delete[Trait.Major]
+			
+			~assign the minor tag
+			perform assign[Trait.Minor]
+			
+		elseif (mytl < menutl) then
+			~remove the default tag
+			perform delete[Trait.Minor]
+			
+			~assign the major tag and any non-standard cost tags
+			perform assign[Trait.Major]
+		else
+			
+		endif
+		
+	]]></eval>
+	
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="2" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+	
+<!-- Tough Trait -->
+  <thing
+    id="abTough"
+    name="Tough"
+    compset="Ability"
+    isunique="yes"
+    description="Description goes here">
+
+	<!-- Set this field if there are multiple ways this trait can be taken
+			Otherwise, the tags defined below will handle the portal value 
+	<fieldval field="abilType" value="Minor/Major Good"/>
+	-->
+	
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate. 
+    <fieldval field="usrLabelAr" value="type:"/>
+    <arrayval field="usrArray" index="0" value="Minor"/>
+    <arrayval field="usrArray" index="1" value="Major"/>
+	-->
+	 
+	<!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Minor"/>
+    <tag group="Trait" tag="Good"/>
+	
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>	
+    
+	<!-- Add a domain
+	<tag group="User" tag="NeedDomain"/>
+	 -->
+	
+    <!-- Change our tags on this trait based on menu selection 
+    <eval value="1" phase="Setup" priority="4000"><![CDATA[
+		~only do this at creation
+		doneif (state.iscreate = 0)
+		
+		if (compare(field[usrSelect].text,field[usrArray].arraytext[0]) = 0) then
+			~remove the special tag
+			perform delete[Trait.Major]
+			
+			~assign the minor tag
+			perform assign[Trait.Minor]
+			
+		elseif (compare(field[usrSelect].text,field[usrArray].arraytext[1]) = 0) then
+			~remove the default tag
+			perform delete[Trait.Minor]
+			
+			~assign the major tag and any non-standard cost tags
+			perform assign[Trait.Major]
+			
+		endif
+		
+	]]></eval>
+	-->
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="2" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+	
+<!-- Voice of Authority Trait -->
+  <thing
+    id="abVoiceAut"
+    name="Voice of Authority"
+    compset="Ability"
+    isunique="yes"
+    description="Description goes here">
+
+	<!-- Set this field if there are multiple ways this trait can be taken
+			Otherwise, the tags defined below will handle the portal value 
+	<fieldval field="abilType" value="Minor/Major Good"/>
+	-->
+	
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate. 
+    <fieldval field="usrLabelAr" value="type:"/>
+    <arrayval field="usrArray" index="0" value="Minor"/>
+    <arrayval field="usrArray" index="1" value="Major"/>
+	-->
+	 
+	<!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Ability"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Assign tags to mark trait type -->
+    <tag group="Trait" tag="Minor"/>
+    <tag group="Trait" tag="Good"/>
+	
+	<!-- For sorting -->
+	<tag group="TraitTab" tag="Good"/>	
+    
+	<!-- Add a domain
+	<tag group="User" tag="NeedDomain"/>
+	 -->
+	
+    <!-- Change our tags on this trait based on menu selection 
+    <eval value="1" phase="Setup" priority="4000"><![CDATA[
+		~only do this at creation
+		doneif (state.iscreate = 0)
+		
+		if (compare(field[usrSelect].text,field[usrArray].arraytext[0]) = 0) then
+			~remove the special tag
+			perform delete[Trait.Major]
+			
+			~assign the minor tag
+			perform assign[Trait.Minor]
+			
+		elseif (compare(field[usrSelect].text,field[usrArray].arraytext[1]) = 0) then
+			~remove the default tag
+			perform delete[Trait.Minor]
+			
+			~assign the major tag and any non-standard cost tags
+			perform assign[Trait.Major]
+			
+		endif
+		
+	]]></eval>
+	-->
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="2" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated abilities)
+      doneif (field[abilActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+
+
+  </document>

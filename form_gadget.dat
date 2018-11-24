@@ -1,0 +1,846 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- Form for adding gadgets.
+-->
+
+<document signature="Hero Lab Data">
+
+  <portal
+    id="gfTracker"
+    style="tblNormal">
+    <table_fixed
+      component="Tracker"
+      showtemplate="gfTracker"
+	  headerpick="GadgetInfo"
+      columns="1">
+	  <list>thingid.trkGadStor</list>
+      <headertitle><![CDATA[
+        @text = "Story Points Spent"
+        ]]></headertitle>
+      </table_fixed>
+    </portal>
+
+   <!-- gfTraits portal for assigning traits -->	
+   <portal
+    id="gfTraits"
+    style="tblNormal">
+    <table_dynamic
+      component="Ability"
+      showtemplate="gfPick"
+      choosetemplate="SimpleItem"
+      showfixedlast="yes"
+	  candidatepick="GadgetInfo"
+	  candidatefield="gdtTagExp"
+	  headerpick="resGadCP"
+	  addpick="resGadCP">
+      <titlebar><![CDATA[
+        @text = "Gadget Traits - " & parent.field[livename].text
+        ]]></titlebar>
+      <description/>
+      <headertitle><![CDATA[
+         @text = "Gadget Points: " & parent.gizmo.childfound[resGadCP].field[resShort].text
+        ]]></headertitle>
+	  <additem><![CDATA[
+        @text = "Add Gadget Trait"
+        ]]></additem>
+      </table_dynamic>
+    </portal>
+
+      <!-- gfImages portal
+        Displays the table of character images.
+
+        Since the table only contains images, we define it to auto-add a new empty
+        image instead of prompting the user to select something from a list.
+
+        We use a "headertitle" script to place a suitable title above the table.
+
+        We use an "additem" script to simply prompt the user to add new images,
+        along with a little bit of extra vertical spacing around it.
+   -->
+  <portal
+    id="gfImages"
+    style="tblNormal">
+    <table_auto
+      component="UserImage"
+      showtemplate="gfImage"
+      autothing="mscGadImg"
+      allowuserorder="yes"
+      showsortset="_CompSeq_"
+	  headerpick="resGadCP"
+	  addpick="resGadCP">
+      <headertitle><![CDATA[
+        @text = "Gallery"
+        ]]></headertitle>
+      <additem><![CDATA[
+        @text = "Add Another Image"
+        ]]></additem>
+      </table_auto>
+    </portal>
+
+
+  <!-- gfPick template
+        Displays the name of the pick/thing and an info button with the basic
+        description text. This is basically the "SimpleItem" template, with one
+        key difference. Auto-added abilities such as those conferred by races are
+        sorted and colored differently to distinguish their nature.
+  -->
+  <template
+    id="gfPick"
+    name="Gadget Ability Pick"
+    compset="Ability"
+    marginhorz="3"
+    marginvert="2">
+
+    <portal
+      id="name"
+      style="lblNormal"
+      showinvalid="yes">
+      <label>
+		<labeltext><![CDATA[
+			if (isuser = 0) then
+				@text = "{text clrauto}"
+			endif
+			@text &= field[thingname].text
+        ]]></labeltext>
+		</label>
+      </portal>
+
+	<portal
+      id="tags"
+      style="lblSecond"
+      showinvalid="no">
+      <label>
+		<labeltext><![CDATA[
+			@text = tagnames[Trait.?," "]
+   	    ]]></labeltext>
+	  </label>
+      </portal>
+
+    <portal
+      id="lblmenu1"
+      style="lblSecond">
+      <label
+        field="usrLabel1">
+        </label>
+      </portal>
+
+    <portal
+      id="lblmenu2"
+      style="lblSecond">
+      <label
+        field="usrLabel2">
+        </label>
+      </portal>
+
+    <portal
+      id="menu1"
+      style="menuNormal">
+      <menu_things
+        field="usrChosen1"
+        component="none"
+        maxvisible="10"
+        usepicksfield="usrSource1"
+        candidatefield="usrCandid1">
+        </menu_things>
+      </portal>
+
+    <portal
+      id="menu2"
+      style="menuNormal">
+      <menu_things
+        field="usrChosen2"
+        component="none"
+        maxvisible="10"
+        usepicksfield="usrSource2"
+        candidatefield="usrCandid2">
+        </menu_things>
+      </portal>
+
+    <portal
+      id="lblmenuar"
+      style="lblSecond">
+      <label
+        field="usrLabelAr">
+        </label>
+      </portal>
+
+    <portal
+      id="menuarray"
+      style="menuNormal">
+      <menu_array
+        field="usrSelect"
+        array="usrArray"
+        maxvisible="10">
+        </menu_array>
+      </portal>
+
+    <portal
+      id="checkbox"
+      style="chkNormal">
+      <checkbox
+        field="usrIsCheck"
+        dynamicfield="usrChkText">
+        </checkbox>
+      </portal>
+
+    <portal
+      id="domain"
+      style="editNormal">
+      <edit
+        field="domDomain"
+		placeholdertext="Details">
+        </edit>
+      </portal>	  
+	  
+    <portal
+      id="info"
+      style="actInfo">
+      <action
+        action="info">
+        </action>
+      <mouseinfo/>
+      </portal>
+
+    <portal
+      id="delete"
+      style="actDelete"
+      tiptext="Click to delete this item">
+      <action
+        action="delete">
+        </action>
+      </portal>
+
+    <position><![CDATA[
+      ~set up our height based on our tallest portal
+      height = portal[info].height
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~position our tallest portal at the top
+      portal[info].top = 0
+
+      ~center the other portals vertically
+      perform portal[name].centervert
+      perform portal[tags].centervert
+      perform portal[delete].centervert
+      perform portal[lblmenu1].centervert
+      perform portal[menu1].centervert
+      perform portal[lblmenu2].centervert
+      perform portal[menu2].centervert
+      perform portal[lblmenuar].centervert
+      perform portal[menuarray].centervert
+      perform portal[checkbox].centervert
+      perform portal[domain].centervert	  
+
+      ~determine whether our portals are visible; we only show them if requested
+      ~Note: Remember that a non-empty tagexpr field indicates menu selection is used.
+
+      if (field[usrCandid1].isempty <> 0) then
+        portal[lblmenu1].visible = 0
+        portal[menu1].visible = 0
+      elseif (field[usrLabel1].isempty <> 0) then
+        portal[lblmenu1].visible = 0
+        endif
+      if (field[usrCandid2].isempty <> 0) then
+        portal[lblmenu2].visible = 0
+        portal[menu2].visible = 0
+      elseif (field[usrLabel2].isempty <> 0) then
+        portal[lblmenu2].visible = 0
+        endif
+      if (empty(field[usrArray].arraytext[0]) <> 0) then
+        portal[lblmenuar].visible = 0
+        portal[menuarray].visible = 0
+      elseif (field[usrLabelAr].isempty <> 0) then
+        portal[lblmenuar].visible = 0
+        endif
+      if (field[usrChkText].isempty <> 0) then
+        portal[checkbox].visible = 0
+        endif	  
+	  
+      ~position the delete portal on the far right and the info portal next to it
+      perform portal[delete].alignedge[right,0]
+      perform portal[info].alignrel[rtol,delete,-8]
+      perform portal[tags].alignrel[rtol,info,-8]
+
+      ~determine our effective right edge, allowing for the buttons above
+      var edge as number
+      edge = portal[tags].left - 5
+	  
+      ~setup the default portal width and gap to be used between and around portals
+      var defwidth as number
+      var gap as number
+      defwidth = 100
+      gap = 10
+
+      ~determine the minimum amount of space we need to reserve for our portals
+      var reserve as number
+      if (portal[checkbox].visible <> 0) then
+        reserve = defwidth
+      elseif (portal[menuarray].visible <> 0) then
+        reserve = portal[lblmenuar].width * portal[lblmenuar].visible
+        reserve += defwidth + gap
+      elseif (portal[menu1].visible <> 0) then
+        reserve = portal[lblmenu1].width * portal[lblmenu1].visible
+        reserve += defwidth + gap
+        reserve += portal[lblmenu2].width * portal[menu2].visible
+        reserve += (defwidth + gap) * portal[menu2].visible
+        endif
+
+      ~position the name on the left, reserving our minimum space for any portals
+      var x as number
+      portal[name].left = 0
+      portal[name].width = minimum(portal[name].width,edge - portal[name].left - reserve)
+      x = portal[name].right + gap
+	  
+      ~setup the maximum width for our some portals, regardless of space available
+      var maxwidth as number
+	  maxwidth = 190
+	  if (tagis[User.NeedDomain] <> 0) then
+		maxwidth -= 90
+	  endif
+      
+	  ~if we have a checkbox, size and position it appropriately
+      if (portal[checkbox].visible <> 0) then
+        portal[checkbox].left = x
+		x = portal[checkbox].right + 4
+      ~if we have a thing-based menu and an array-based menu, size and position them appropriately
+      elseif (portal[menu1].visible + portal[menuarray].visible > 1) then
+        if (portal[lblmenu1].visible <> 0) then
+          portal[lblmenu1].left = x
+          x = portal[lblmenu1].right + 4
+          endif
+        portal[menu1].left = x
+        var extra as number
+        extra = (portal[lblmenu2].width + 4) * portal[lblmenu2].visible
+        var actual as number
+        actual = (edge - portal[menu1].left - extra - gap) / 2
+        portal[menu1].width = minimum(actual,maxwidth)
+        portal[menu2].width = portal[menu1].width
+        x = portal[menu1].right + gap
+        if (portal[lblmenuar].visible <> 0) then
+          portal[lblmenuar].left = x
+          x = portal[lblmenuar].right + 4
+          endif
+        portal[menuarray].left = x
+		x = portal[menuarray].right + 4		
+      ~if we have an array-based menu, size and position it appropriately
+      elseif (portal[menuarray].visible <> 0) then
+        if (portal[lblmenuar].visible <> 0) then
+          portal[lblmenuar].left = x
+          x = portal[lblmenuar].right + 4
+          endif
+        portal[menuarray].left = x
+        portal[menuarray].width = maxwidth
+		x = portal[menuarray].right + 4
+      ~if we have one thing-based menu, size and position it appropriately
+      elseif (portal[menu1].visible + portal[menu2].visible = 1) then
+        if (portal[lblmenu1].visible <> 0) then
+          portal[lblmenu1].left = x
+          x = portal[lblmenu1].right + 4
+          endif
+        portal[menu1].left = x
+        portal[menu1].width = minimum(edge - portal[menu1].left,maxwidth)
+		x = portal[menu1].right + 4
+      ~if we have two thing-based menus, size and position them appropriately
+      elseif (portal[menu1].visible <> 0) then
+        if (portal[lblmenu1].visible <> 0) then
+          portal[lblmenu1].left = x
+          x = portal[lblmenu1].right + 4
+          endif
+        portal[menu1].left = x
+        var extra as number
+        extra = (portal[lblmenu2].width + 4) * portal[lblmenu2].visible
+        var actual as number
+        actual = (edge - portal[menu1].left - extra - gap) / 2
+        portal[menu1].width = minimum(actual,maxwidth)
+        portal[menu2].width = portal[menu1].width
+        x = portal[menu1].right + gap
+        if (portal[lblmenu2].visible <> 0) then
+          portal[lblmenu2].left = x
+          x = portal[lblmenu2].right + 4
+          endif
+        portal[menu2].left = x
+		x = portal[menu2].right + 4
+        endif
+
+	  ~if we don't need a domain, hide it
+      if (tagis[User.NeedDomain] = 0) then
+        portal[domain].visible = 0	
+	        ~otherwise, position the domain portals next to the TL
+			~RDS altered to make the name portal invivisible and shift the domain to the name position 
+			~    to use it as a custom Skill name when a Custom Skill is chosen
+      else
+		portal[domain].left = x 
+		portal[domain].width = minimum(190,portal[tags].left - portal[domain].left - 5)		 
+	  endif			
+		
+      ~if a menu is visible, make sure it has a selection
+      if (portal[menu1].visible <> 0) then
+        if (field[usrChosen1].ischosen = 0) then
+          perform portal[menu1].setstyle[menuError]
+          endif
+        endif
+      if (portal[menu2].visible <> 0) then
+        if (field[usrChosen2].ischosen = 0) then
+          perform portal[menu2].setstyle[menuError]
+          endif
+        endif
+      if (portal[menuarray].visible <> 0) then
+        if (field[usrSelect].isempty <> 0) then
+          perform portal[menuarray].setstyle[menuError]
+          endif
+        endif
+      ]]></position>
+
+    </template>	
+	
+  <!-- gfTracker template
+        Presents the tracked resource for the user to manage the current consumption,
+        which is done via the incrementer shown.
+  -->
+  <template
+    id="gfTracker"
+    name="Tracker"
+    compset="Tracker"
+    marginhorz="3"
+    marginvert="3">
+
+    <portal
+      id="value"
+      style="incrBox"
+      tiptext="Specify the current value for the tracked resource">
+      <incrementer
+        field="trkUser">
+        </incrementer>
+      </portal>
+
+    <portal
+      id="name"
+      style="lblNormal">
+      <label
+        field="name">
+        </label>
+      </portal>
+
+    <portal
+      id="reset"
+      style="actReset"
+      tiptext="Click here to reset the value to its default.">
+      <action
+        action="trigger"
+        confirm="This will reset the value to its default, as appropriate to the resource. Proceed?">
+        <trigger><![CDATA[
+          if (tagis[Helper.ResetMax] <> 0) then
+            field[trkUser].value = field[trkMax].value
+          else
+            field[trkUser].value = field[trkMin].value
+            endif
+          ]]></trigger>
+        </action>
+      </portal>
+
+    <portal
+      id="info"
+      style="actInfo">
+      <action
+        action="info">
+        </action>
+      <mouseinfo/>
+      </portal>
+
+    <position><![CDATA[
+      ~set up our height based on our tallest portal
+      height = portal[value].height
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~center the portals vertically
+      perform portal[value].centervert
+      perform portal[name].centervert
+      perform portal[reset].centervert
+      perform portal[info].centervert
+
+      ~position the info portal on the far right
+      perform portal[info].alignedge[right,0]
+
+      ~position the reset portal to the left of the info portal
+      perform portal[reset].alignrel[rtol,info,-5]
+
+      ~position the value portal on the left
+      portal[value].left = 0
+
+      ~position the name to the right of the value portal
+      perform portal[name].alignrel[ltor,value,6]
+      var limit as number
+      limit = portal[reset].left - portal[name].left - 15
+      portal[name].width = minimum(portal[name].width,limit)
+
+	  ~set the name invisible for now
+	  portal[name].visible = 0
+	  
+      ~hide the reset button if we've been designated as not supporting reset
+      if (tagis[Helper.NoReset] <> 0) then
+        portal[reset].visible = 0
+        endif
+      ]]></position>
+
+    </template>
+	
+  <!-- gfImage template
+        This template shows a user-added gadget image. The height is calculated
+        based on the width such that a relatively symmetric image space is provided.
+  -->
+  <template
+    id="gfImage"
+    name="User Image"
+    compset="UserImage"
+    marginhorz="8"
+    marginvert="3">
+
+    <portal
+      id="image"
+      style="imgNormal">
+      <image_user
+        field="uimgImage">
+        </image_user>
+      </portal>
+
+    <portal
+      id="delete"
+      style="actDelete">
+      <action
+        action="delete">
+        </action>
+      </portal>
+
+    <position><![CDATA[
+      ~position the delete portal appropriately
+      perform portal[delete].alignedge[right,0]
+      portal[delete].top = 5
+
+      ~use the remaining width for the image portal and use a symmetric height
+      portal[image].left = 0
+      portal[image].width = portal[delete].left - portal[image].left - 10
+      portal[image].height = portal[image].width
+
+      ~set our height based on the extent of our contents
+      height = portal[image].bottom
+      ]]></position>
+    </template>	
+	
+  <!-- Title template -->
+  <template
+    id="gfTitle"
+    name="Title"
+    compset="GadgetInfo">
+
+    <portal
+      id="title"
+      style="lblXLarge">
+      <label
+        istitle="yes">
+        <labeltext><![CDATA[
+          @text = parent.field[name].text
+          ]]></labeltext>
+        </label>
+      </portal>
+
+    <position><![CDATA[
+      ~set up our width and height
+      height = portal[title].height
+      doneif (issizing <> 0)
+
+	  portal[title].top = 10
+      portal[title].width = width
+      ]]></position>
+    </template>
+
+  <!-- Details template -->
+  <template
+    id="gfDetails"
+    name="Detail"
+    compset="GadgetInfo">
+
+	<portal
+      id="lbltype"
+      style="lblLeft">
+      <label>
+        <labeltext><![CDATA[
+          @text = "Gadget Type:"
+          ]]></labeltext>
+        </label>
+      </portal>
+
+    <portal
+      id="type"
+      style="incrWide">
+      <incrementer
+        field="gdtType">
+        </incrementer>
+      </portal>
+
+	<portal
+      id="desc"
+      style="editNormal">
+      <edit
+		ismultiline="yes"
+		field="gdtDesc"
+		placeholdertext="Enter a description of this gadget."/>
+      </portal>
+
+    <position><![CDATA[
+      ~set up our width and height
+      height = 200
+      doneif (issizing <> 0)
+
+	  ~position horizontally
+	  perform portal[lbltype].centerhorz
+	  perform portal[type].centerhorz
+	
+	  portal[desc].left = 5
+	  
+	  portal[lbltype].top = 0
+	  perform portal[type].alignrel[ttob,lbltype,5]
+	  perform portal[desc].alignrel[ttob,type,10]
+	  
+	  portal[desc].width = width
+	  portal[desc].height = height - portal[desc].top - 5
+
+	  portal[type].width = width * .35
+	  
+	  height = portal[desc].bottom + 30
+      ]]></position>
+    </template>
+
+  <!-- Custom cost template -->
+  <template
+    id="gfCost"
+    name="Story Point cost"
+    compset="GadgetInfo">
+
+    <portal
+      id="label"
+      style="lblTitle">
+      <label
+        istitle="yes">
+        <labeltext><![CDATA[
+          @text = "Custom Cost"
+          ]]></labeltext>
+        </label>
+      </portal>
+
+	<portal
+      id="storycost"
+      style="editCenter">
+      <edit
+		field="gdtStory"
+		format="integer"/>
+      </portal>
+	  
+    <portal
+      id="isfree"
+      style="chkNormal"
+      tiptext="Check this option to designate this gadget costs no story points">
+      <checkbox
+        field="gdtIsFree"
+        message="No cost?">
+        </checkbox>
+      </portal>		  
+
+    <position><![CDATA[
+      ~set up our width and height
+      height = portal[label].height
+      doneif (issizing <> 0)
+
+	  portal[label].top = 0
+      portal[label].width = width
+	  
+	  perform portal[storycost].alignrel[ttob,label,5]
+	  perform portal[storycost].centeron[horz,label]
+	  
+	  perform portal[isfree].alignrel[ltol,storycost,0]
+	  portal[isfree].top = portal[storycost].bottom + 5
+      ]]></position>
+    </template>	
+	
+	<!-- VehInfo template -->
+  <template
+    id="gfVehInfo"
+    name="Vehicle Info"
+    compset="GadgetInfo">
+
+	<portal
+      id="title"
+      style="lblTitle">
+      <label
+		istitle="yes">
+        <labeltext><![CDATA[
+          @text = "Vehicle Information"
+          ]]></labeltext>
+        </label>
+      </portal>
+
+    <portal
+      id="isvehicle"
+      style="chkNormal"
+      tiptext="Check this option to designate this as a vehicle">
+      <checkbox
+        field="gdtIsVeh"
+        message="Is this a vehicle?">
+        </checkbox>
+      </portal>	  
+	  
+    <portal
+      id="armour"
+      style="incrWide">
+      <incrementer
+        field="gdtArmour">
+        </incrementer>
+      </portal>
+
+    <portal
+      id="hitcap"
+      style="incrWide">
+      <incrementer
+        field="gdtHitCap">
+        </incrementer>
+      </portal>
+
+	<portal
+      id="speed"
+      style="incrWide">
+      <incrementer
+        field="gdtSpeed">
+        </incrementer>
+      </portal>
+
+    <position><![CDATA[
+      ~set up our width and height
+      height = portal[speed].height
+      doneif (issizing <> 0)
+
+	  ~postition the checkbox on the left
+	  portal[isvehicle].top = 0
+	  portal[isvehicle].left = 0
+	  
+	  ~position horizontally
+	  portal[title].width = width
+	  perform portal[title].centerhorz
+	  
+	  perform portal[title].alignrel[ttob,isvehicle,5]
+		  
+	  ~position other portals under title
+	  perform portal[armour].alignrel[ttob,title,5]
+	  perform portal[hitcap].alignrel[ttob,title,5]
+	  perform portal[speed].alignrel[ttob,title,5]
+
+	  ~center on point
+	  perform portal[armour].centerpoint[horz,130]
+	  perform portal[hitcap].centerpoint[horz,330]
+	  perform portal[speed].centerpoint[horz,530]
+	  
+	  ~hide everything if vehicle is not checked
+	  portal[title].visible = field[gdtIsVeh].value
+	  portal[armour].visible = field[gdtIsVeh].value
+	  portal[hitcap].visible = field[gdtIsVeh].value
+	  portal[speed].visible = field[gdtIsVeh].value
+	  
+      ]]></position>
+    </template>	
+	
+  <!-- gadget layout
+        
+  -->
+  <layout
+    id="gadgetform">
+    <portalref portal="gfImages" taborder="60"/>
+    <portalref portal="gfTraits" taborder="70"/>
+    <portalref portal="gfTracker" taborder="40"/>
+    <templateref template="gfTitle" thing="GadgetInfo" taborder="10"/>
+    <templateref template="gfDetails" thing="GadgetInfo" taborder="20"/>
+    <templateref template="gfVehInfo" thing="GadgetInfo" taborder="30"/>
+    <templateref template="gfCost" thing="GadgetInfo" taborder="50"/>
+
+    <!-- This script sizes and positions the layout and its child visual elements. -->
+    <position><![CDATA[
+      ~setup a width that is generally reasonable
+      width = 695
+
+      ~set the fixed dimensions and render the title template
+      template[gfTitle].width = width / 2
+      perform template[gfTitle].render
+	  
+	  ~position the title at the top
+	   template[gfTitle].top = 0
+	   template[gfTitle].left = 0
+	   
+	  ~position details beneath the title
+	   template[gfDetails].top = template[gfTitle].bottom + 15
+	   template[gfDetails].left = template[gfTitle].left
+	   template[gfDetails].width = template[gfTitle].width
+	   template[gfDetails].height = 200
+	   
+	  ~position tracker
+	  portal[gfTracker].top = 0
+	  portal[gfTracker].left = (template[gfTitle].right + 5)
+	  portal[gfTracker].height = 150
+	   
+	  ~position the custom cost template
+	  template[gfCost].width = portal[gfTracker].width
+	  perform template[gfCost].render
+	  template[gfCost].top = portal[gfTracker].bottom + 15
+	  template[gfCost].left = portal[gfTracker].left
+	  
+	  ~position the image portal to the right
+	   portal[gfImages].width = 200
+	   portal[gfImages].height = 300
+	   portal[gfImages].left = width - portal[gfImages].width + 5
+	  
+	  ~position the vehicle template above traits
+		template[gfVehInfo].height = 25
+		template[gfVehInfo].top = template[gfDetails].bottom
+		template[gfVehInfo].left = 0
+		template[gfVehInfo].width= width
+
+
+      ~position and size the table to span the full layout; it will only use the
+      ~vertical space that it actually needs
+      portal[gfTraits].left = 0
+      portal[gfTraits].top = template[gfDetails].bottom + 100
+      portal[gfTraits].width = width
+      portal[gfTraits].height = 300
+	  
+		]]></position>
+
+    </layout>
+
+
+  <!-- gadget form
+        This is the "config" form shown to configure a new character within Hero
+        Lab.
+
+        NOTE! The unique id of this form is specially recognized by Hero Lab as
+        the form to be used for character configuration. A form with this id is
+        required within your data files.
+  -->
+  <form
+    id="gadget"
+    name="Gadget"
+	entity="entGadget">
+    <layoutref layout="gadgetform"/>
+
+    <position><![CDATA[
+      ~render the layout to generate its dimensions
+      perform layout[gadgetform].render
+
+      ~set the width and height of the form to the dimensions of the layout
+      width = 700
+      height = 600
+      ]]></position>
+
+    </form>
+
+
+  </document>

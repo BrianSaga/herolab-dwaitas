@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of skills for the game system. 
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Athletics Skill -->
+  <thing
+    id="skAthletic"
+    name="Athletics"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Athl"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+	
+	<child
+		entity="entAOE">
+	</child>	
+    </thing>
+
+  <!-- Convince Skill -->
+  <thing
+    id="skConvince"
+    name="Convince"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Conv"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+	
+	<child
+		entity="entAOE">
+	</child>
+    </thing>
+
+  <!-- Craft Skill -->
+  <thing
+    id="skCraft"
+    name="Craft"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Crft"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<child
+		entity="entAOE">
+	</child>	
+    </thing>
+
+  <!-- Fighting Skill -->
+  <thing
+    id="skFighting"
+    name="Fighting"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Fght"/>
+	<child
+		entity="entAOE">
+	</child>    
+	</thing>
+
+  <!-- Knowledge Skill -->
+  <thing
+    id="skKnow"
+    name="Knowledge"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Know"/>
+	<child
+		entity="entAOE">
+	</child>	
+    </thing>
+
+  <!-- Marksmanship Skill -->
+  <thing
+    id="skMarksman"
+    name="Marksmanship"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Mark"/>
+	<child
+		entity="entAOE">
+	</child>
+    </thing>
+
+  <!-- Medicine Skill -->
+  <thing
+    id="skMedicine"
+    name="Medicine"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Medi"/>
+	<child
+		entity="entAOE">
+	</child>
+    </thing>
+
+  <!-- Science Skill -->
+  <thing
+    id="skScience"
+    name="Science"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Scie"/>
+	<child
+		entity="entAOE">
+	</child>
+    </thing>
+
+  <!-- Subterfuge Skill -->
+  <thing
+    id="skSubter"
+    name="Subterfuge"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Subt"/>
+	<child
+		entity="entAOE">
+	</child>
+    </thing>
+
+  <!-- Survival Skill -->
+  <thing
+    id="skSurvival"
+    name="Survival"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Surv"/>
+	<child
+		entity="entAOE">
+	</child>
+    </thing>
+
+  <!-- Technology Skill -->
+  <thing
+    id="skTechnol"
+    name="Technology"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Tech"/>
+	<child
+		entity="entAOE">
+	</child>
+    </thing>
+
+  <!-- Transport Skill -->
+  <thing
+    id="skTrans"
+    name="Transport"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Tran"/>
+	<child
+		entity="entAOE">
+	</child>
+    </thing>	
+
+  </document>

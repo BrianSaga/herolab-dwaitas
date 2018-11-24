@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of attributes possessed by every actor for the
+      game system. The display order of attributes is controlled via the assignment of
+      an "explicit" tag with the relative position of each.
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Awareness Attribute
+  -->
+  <thing
+    id="attrAware"
+    name="Awareness"
+    compset="Attribute"
+    isunique="yes"
+    description="Awareness takes into account anything that uses the five senses (sight, hearing, touch,  smell or taste), or even that indefinable sixth sense of just knowing that something is coming, sensing someone is looking at you or talking behind your back. Awareness can be used to notice an enemy or to look for clues.">
+    <fieldval field="trtAbbrev" value="Awar"/>
+	<fieldval field="trtMinimum" value="1"/>
+	<fieldval field="trtMaximum" value="6"/>
+    <tag group="explicit" tag="1"/>
+    </thing>
+
+  <!-- Coordination Attribute
+  -->
+  <thing
+    id="attrCoord"
+    name="Coordination"
+    compset="Attribute"
+    isunique="yes"
+    description="Some people are just better at controlling what their bodies do, rather than flailing wildly or falling over constantly. Characters with a higher Coordination can twirl batons, juggle, are pretty good at aiming weapons, and are great at paintball or laser-tag. Coordination is a combination of physical dexterity and hand-eye coordination (hence the name). You may not think it, but playing your average video game will need good Coordination just as much as the healthier options like basketball or football. Doesn’t mean the video gaming couch-potato isn’t lacking in the other Attributes though!">
+    <fieldval field="trtAbbrev" value="Coor"/>
+	<fieldval field="trtMinimum" value="1"/>
+	<fieldval field="trtMaximum" value="6"/>
+    <tag group="explicit" tag="2"/>
+    </thing>
+
+  <!-- Ingenuity Attribute
+  -->
+  <thing
+    id="attrIngen"
+    name="Ingenuity"
+    compset="Attribute"
+    isunique="yes"
+    description="The Doctor is all about brains over brawn, he can think (and usually talk) his way out of any situation. Knowledge is power, quite literally in most cases. Ingenuity is a measure of how smart a character is, but not necessarily how skilled or experienced they are. They can be brilliant at deducing mysteries, reprogramming computers or identifying alien species, but if they’re unskilled in something, no amount of brains will help. Ingenuity isn’t related to education, either. You can be smart, but unschooled. A character’s academic schooling is determined by the Skills they have, not their Ingenuity Attribute. Ingenuity is all about how inventive they are, their lateral thinking as well as their overall intelligence.">
+    <fieldval field="trtAbbrev" value="Inge"/>
+	<fieldval field="trtMinimum" value="1"/>
+	<fieldval field="trtMaximum" value="6"/>	
+    <tag group="explicit" tag="3"/>
+    </thing>
+  
+  <!-- Presense Attribute
+  -->
+  <thing
+    id="attrPresen"
+    name="Presence"
+    compset="Attribute"
+    isunique="yes"
+    description="Presence is a measure of the character’s personality, and how much people seem to naturally like them. Characters with a low Presence are either easily ignored or generally unable to get dates, whereas characters with a high Presence can charm, carouse and persuade their way out of trouble.">
+    <fieldval field="trtAbbrev" value="Pres"/>
+	<fieldval field="trtMinimum" value="1"/>
+	<fieldval field="trtMaximum" value="6"/>	
+    <tag group="explicit" tag="4"/>
+    </thing>
+
+  <!-- Resolve Attribute
+  -->
+  <thing
+    id="attrResolv"
+    name="Resolve"
+    compset="Attribute"
+    isunique="yes"
+    description="Resolve is a measure of the character’s determination and willpower. Whether it’s something simple like resisting the urge to eat those chips even though you’re on a diet, or resisting the instinct to blink when a Weeping Angel is bearing down upon you. It also shows your determination to do something, how convincing you can be and how resolved to your cause you are. This determination can make an enemy pause before opening fire, change someone’s mind or instill confidence in your colleagues.">
+    <fieldval field="trtAbbrev" value="Pres"/>
+	<fieldval field="trtMinimum" value="1"/>
+	<fieldval field="trtMaximum" value="6"/>	
+    <tag group="explicit" tag="5"/>
+    </thing>
+
+  <!-- Strength Attribute
+        NOTE! We include the Strength attribute because the minimum strength
+              requirement mechanisms for weapons and armor rely upon it.
+  -->
+  <thing
+    id="attrStr"
+    name="Strength"
+    compset="Attribute"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Str"/>
+	<fieldval field="trtMinimum" value="1"/>
+	<fieldval field="trtMaximum" value="6"/>	
+    <tag group="explicit" tag="6"/>
+    </thing>
+
+  </document>

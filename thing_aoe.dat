@@ -1,0 +1,912 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of aoes for the game system. 
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Entity Helper -->
+  <thing
+    id="aoeHelper"
+    name="AOE Helper Thing"
+    compset="AOEInfo"
+    isunique="yes"
+    description="Description goes here">	
+    </thing>
+
+  <!-- Custom AOE -->
+  <thing
+    id="aeCustom"
+    name="&#150; Custom Area of Expertise &#150;"
+    compset="AreaOfExp"
+    isunique="no"
+    description="Description goes here">
+		<tag group="OnSkill" tag="Any"/>
+		<tag group="Helper" tag="CustomItem"/>
+    </thing>
+
+  <!-- Running AOE -->
+  <thing
+    id="aeRunning"
+    name="Running"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skAthletic"/>
+    </thing>
+
+  <!-- Jumping AOE -->
+  <thing
+    id="aeJumping"
+    name="Jumping"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skAthletic"/>	
+    </thing>
+	
+  <!-- Riding AOE -->
+  <thing
+    id="aeRiding"
+    name="Riding"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skAthletic"/>	
+    </thing>
+
+  <!-- Climbing AOE -->
+  <thing
+    id="aeClimbing"
+    name="Climbing"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skAthletic"/>	
+    </thing>
+
+  <!-- Parachuting AOE -->
+  <thing
+    id="aeParachut"
+    name="Parachuting"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skAthletic"/>	
+    </thing>
+
+  <!-- Scuba AOE -->
+  <thing
+    id="aeScuba"
+    name="Scuba"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skAthletic"/>	
+    </thing>
+
+  <!-- Swimming AOE -->
+  <thing
+    id="aeSwimming"
+    name="Swimming"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skAthletic"/>	
+    </thing>
+
+  <!-- Fast Talk AOE -->
+  <thing
+    id="aeFastTalk"
+    name="Fast Talk"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skConvince"/>	
+    </thing>
+
+  <!-- Bluff AOE -->
+  <thing
+    id="aeBluff"
+    name="Bluff"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skConvince"/>	
+    </thing>
+
+  <!-- Leadership AOE -->
+  <thing
+    id="aeLeader"
+    name="Leadership"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skConvince"/>	
+    </thing>
+
+  <!-- Seduction AOE -->
+  <thing
+    id="aeSeduct"
+    name="Seduction"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skConvince"/>	
+    </thing>
+
+  <!-- Interrogation AOE -->
+  <thing
+    id="aeInterr"
+    name="Interrogation"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skConvince"/>	
+    </thing>
+
+   <!-- Charm AOE -->
+   <thing
+    id="aeCharm"
+    name="Charm"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skConvince"/>	
+    </thing>
+
+   <!-- Lie AOE -->
+   <thing
+    id="aeLie"
+    name="Lie"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skConvince"/>	
+    </thing>
+
+	<!-- Talk Down AOE -->
+   <thing
+    id="aeTalkDown"
+    name="Talk Down"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skConvince"/>	
+    </thing>
+
+   <!-- Building AOE -->
+   <thing
+    id="aeBuilding"
+    name="Building"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skCraft"/>	
+    </thing>
+
+   <!-- Painting AOE -->
+   <thing
+    id="aePainting"
+    name="Painting"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skCraft"/>	
+    </thing>
+   
+   <!-- Farming AOE -->
+   <thing
+    id="aeFarming"
+    name="Farming"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skCraft"/>	
+    </thing>
+
+	<!-- Singing AOE -->
+   <thing
+    id="aeSinging"
+    name="Singing"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skCraft"/>	
+    </thing>
+
+   <!-- Woodwork AOE -->
+   <thing
+    id="aeWoodwork"
+    name="Woodwork"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skCraft"/>	
+    </thing>
+
+	<!-- Guitar AOE -->
+   <thing
+    id="aeInstrum"
+    name="Musical Instrument"
+    compset="AreaOfExp"
+    isunique="no"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skCraft"/>	
+		<tag group="User" tag="NeedDomain"/>	
+    </thing>
+
+	<!-- Metalwork AOE -->
+   <thing
+    id="aeMetalwrk"
+    name="Metalwork"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skCraft"/>	
+    </thing>
+
+	<!-- Dancing AOE -->
+   <thing
+    id="aeDancing"
+    name="Dancing"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skCraft"/>	
+    </thing>
+
+   <!-- Unarmed Combat AOE -->
+   <thing
+    id="aeUnarmed"
+    name="Unarmed Combat"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skFighting"/>	
+		<tag group="User" tag="NeedDomain"/>	
+    </thing>
+
+	<!-- Parry AOE -->
+   <thing
+    id="aeParry"
+    name="Parry"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skFighting"/>	
+    </thing>
+
+	<!-- Block AOE -->
+   <thing
+    id="aeBlock"
+    name="Block"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skFighting"/>	
+    </thing>
+
+	<!-- Sword AOE -->
+   <thing
+    id="aeSword"
+    name="Sword"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skFighting"/>	
+    </thing>
+
+	<!-- Club AOE -->
+   <thing
+    id="aeClub"
+    name="Club"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skFighting"/>	
+    </thing>
+
+   <!-- History AOE -->
+   <thing
+    id="aeHistory"
+    name="History"
+    compset="AreaOfExp"
+    isunique="no"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skKnow"/>	
+		<tag group="User" tag="NeedDomain"/>	
+    </thing>
+
+   <!-- Law AOE -->
+   <thing
+    id="aeLaw"
+    name="Law"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skKnow"/>	
+    </thing>
+
+   <!-- Psychology AOE -->
+   <thing
+    id="aePsych"
+    name="Psychology"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skKnow"/>	
+    </thing>
+
+   <!-- Language AOE -->
+   <thing
+    id="aeLang"
+    name="Language"
+    compset="AreaOfExp"
+    isunique="no"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skKnow"/>	
+		<tag group="User" tag="NeedDomain"/>	
+    </thing>
+
+	<!-- Literature AOE -->
+   <thing
+    id="aeLiter"
+    name="Literature"
+    compset="AreaOfExp"
+    isunique="no"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skKnow"/>	
+    </thing>
+
+	<!-- Sociology AOE -->
+   <thing
+    id="aeSociol"
+    name="Sociology"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skKnow"/>	
+    </thing>
+
+	<!-- Alien Cultures AOE -->
+   <thing
+    id="aeAlienCul"
+    name="Alien Cultures"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skKnow"/>	
+    </thing>
+
+   <!-- Earthonomics AOE -->
+   <thing
+    id="aeEarthon"
+    name="Earthonomics"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skKnow"/>	
+    </thing>
+
+   <!-- Skaro History AOE -->
+   <thing
+    id="aeSkaroHis"
+    name="Skaro History"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skKnow"/>	
+    </thing>
+
+   <!-- Gallifrey AOE -->
+   <thing
+    id="aeGallif"
+    name="Gallifrey"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skKnow"/>	
+    </thing>
+
+   <!-- The Dark Times AOE -->
+   <thing
+    id="aeDarkTime"
+    name="Dark Times"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skKnow"/>	
+    </thing>
+
+   <!-- Bow AOE -->
+   <thing
+    id="aeBow"
+    name="Bow"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skMarksman"/>	
+    </thing>
+
+   <!-- Pistol AOE -->
+   <thing
+    id="aePistol"
+    name="Pistol"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skMarksman"/>	
+    </thing>
+
+   <!-- Rifle AOE -->
+   <thing
+    id="aeRifle"
+    name="Rifle"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skMarksman"/>	
+    </thing>
+
+	<!-- Automatic Weapons AOE -->
+   <thing
+    id="aeAutoWeap"
+    name="Automatic Weapons"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skMarksman"/>	
+    </thing>
+
+   <!-- Thrown Weapons AOE -->
+   <thing
+    id="aeThroWeap"
+    name="Thrown Weapons"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skMarksman"/>	
+    </thing>
+
+	<!-- Ship Weapon Systems AOE -->
+   <thing
+    id="aeShipWeap"
+    name="Ship Weapon Systems"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skMarksman"/>	
+    </thing>
+
+	<!-- Cannon AOE -->
+   <thing
+    id="aeCannon"
+    name="Cannon"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skMarksman"/>	
+    </thing>
+
+	<!-- Plasma Weapons AOE -->
+   <thing
+    id="aePlasma"
+    name="Plasma Weapons"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skMarksman"/>	
+    </thing>
+
+   <!-- Disintegrators AOE -->
+   <thing
+    id="aeDisinteg"
+    name="Disintegrators"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skMarksman"/>	
+    </thing>
+
+	<!-- Disease AOE -->
+   <thing
+    id="aeDisease"
+    name="Disease"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skMedicine"/>	
+    </thing>
+
+	<!-- Wounds AOE -->
+   <thing
+    id="aeWounds"
+    name="Wounds"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skMedicine"/>	
+    </thing>
+
+	<!-- Poisons AOE -->
+   <thing
+    id="aePoisons"
+    name="Poisons"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skMedicine"/>	
+    </thing>
+
+	<!-- Psychological Trauma AOE -->
+   <thing
+    id="aePsychTra"
+    name="Psychological Trauma"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skMedicine"/>	
+    </thing>
+
+	<!-- Surgery Trauma AOE -->
+   <thing
+    id="aeSurgery"
+    name="Surgery"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skMedicine"/>	
+    </thing>
+
+	<!-- Forensics AOE -->
+   <thing
+    id="aeForensic"
+    name="Forensics"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skMedicine"/>	
+    </thing>
+
+	<!-- Veterinary Medicine AOE -->
+   <thing
+    id="aeVetMed"
+    name="Veterinary Medicine"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skMedicine"/>	
+    </thing>
+
+	<!-- Alternative Remedies AOE -->
+   <thing
+    id="aeAltRem"
+    name="Alternative Remedies"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skMedicine"/>	
+    </thing>
+
+	<!-- Mathematics AOE -->
+   <thing
+    id="aeMath"
+    name="Mathematics"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skScience"/>	
+    </thing>
+
+	<!-- Physics AOE -->
+   <thing
+    id="aePhysics"
+    name="Physics"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skScience"/>	
+    </thing>
+
+	<!-- Chemistry AOE -->
+   <thing
+    id="aeChemistr"
+    name="Chemistry"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skScience"/>	
+    </thing>
+
+	<!-- Biology AOE -->
+   <thing
+    id="aeBiology"
+    name="Biology"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skScience"/>	
+    </thing>
+
+	<!-- Quantum Physics AOE -->
+   <thing
+    id="aeQuantum"
+    name="Quantum Physics"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skScience"/>	
+    </thing>
+
+	<!-- Astrophysics AOE -->
+   <thing
+    id="aeAstrophy"
+    name="Astrophysics"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skScience"/>	
+    </thing>
+
+	<!-- Sneaking AOE -->
+   <thing
+    id="aeSneaking"
+    name="Sneaking"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skSubter"/>	
+    </thing>
+
+	<!-- Lockpicking AOE -->
+   <thing
+    id="aeLockpick"
+    name="Lockpicking"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skSubter"/>	
+    </thing>
+
+	<!-- Sleight of Hand AOE -->
+   <thing
+    id="aeSleight"
+    name="Sleight of Hand"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skSubter"/>	
+    </thing>
+
+	<!-- Pickpocketing AOE -->
+   <thing
+    id="aePickpock"
+    name="Pickpocketing"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skSubter"/>	
+    </thing>
+
+	<!-- Safecracking AOE -->
+   <thing
+    id="aeSafecr"
+    name="Safecracking"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skSubter"/>	
+    </thing>
+
+	<!-- Camouflage AOE -->
+   <thing
+    id="aeCamoufl"
+    name="Camouflage"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skSubter"/>	
+    </thing>
+
+	<!-- Space AOE -->
+   <thing
+    id="aeSpace"
+    name="Space"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skSurvival"/>	
+    </thing>
+
+	<!-- Desert AOE -->
+   <thing
+    id="aeDesert"
+    name="Desert"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skSurvival"/>	
+    </thing>
+
+	<!-- Swamp AOE -->
+   <thing
+    id="aeSwamp"
+    name="Swamp"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skSurvival"/>	
+    </thing>
+
+	<!-- Mountain AOE -->
+   <thing
+    id="aeMountain"
+    name="Mountain"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skSurvival"/>	
+    </thing>
+
+	<!-- Icescape AOE -->
+   <thing
+    id="aeIcescape"
+    name="Icescape"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skSurvival"/>	
+    </thing>
+
+	<!-- Underwater AOE -->
+   <thing
+    id="aeUnderwat"
+    name="Underwater"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skSurvival"/>	
+    </thing>
+
+	<!-- Wilderness AOE -->
+   <thing
+    id="aeWilder"
+    name="Wilderness"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skSurvival"/>	
+    </thing>
+
+	<!-- Computers AOE -->
+   <thing
+    id="aeComputer"
+    name="Computers"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skTechnol"/>	
+    </thing>
+
+	<!-- Electronics AOE -->
+   <thing
+    id="aeElectron"
+    name="Electronics"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skTechnol"/>	
+    </thing>
+
+	<!-- Gadgetry AOE -->
+   <thing
+    id="aeGadgetry"
+    name="Gadgetry"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skTechnol"/>	
+    </thing>
+
+	<!-- Hacking AOE -->
+   <thing
+    id="aeHacking"
+    name="Hacking"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skTechnol"/>	
+    </thing>
+
+	<!-- Repair AOE -->
+   <thing
+    id="aeRepair"
+    name="Repair"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skTechnol"/>	
+    </thing>
+
+	<!-- TARDIS AOE -->
+   <thing
+    id="aeTARDIS"
+    name="TARDIS"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skTechnol"/>	
+    </thing>
+
+	<!-- Cars AOE -->
+   <thing
+    id="aeCars"
+    name="Cars"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skTrans"/>	
+    </thing>
+
+	<!-- Trucks AOE -->
+   <thing
+    id="aeTrucks"
+    name="Trucks"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skTrans"/>	
+    </thing>
+
+	<!-- Helicopters AOE -->
+   <thing
+    id="aeHelicop"
+    name="Helicopters"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skTrans"/>	
+    </thing>
+
+	<!-- Aircraft AOE -->
+   <thing
+    id="aeAircraft"
+    name="Aircraft"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skTrans"/>	
+    </thing>
+
+	<!-- Spaceships AOE -->
+   <thing
+    id="aeSpacesh"
+    name="Spaceships"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skTrans"/>	
+    </thing>
+
+	<!-- Temporal Ships AOE -->
+   <thing
+    id="aeTemporal"
+    name="Temporal Ships"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skTrans"/>	
+    </thing>
+
+	<!-- Motorcycles AOE -->
+   <thing
+    id="aeMotorcyc"
+    name="Motorcycles"
+    compset="AreaOfExp"
+    isunique="yes"
+    description="Description goes here">
+		<tag group="OnSkill" tag="skTrans"/>	
+    </thing>
+
+  </document>

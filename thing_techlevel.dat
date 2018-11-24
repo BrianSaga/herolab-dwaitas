@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of tech levels for the game system.
+-->
+
+<document signature="Hero Lab Data">
+
+<!-- TL 1 -->
+  <thing
+    id="tl1"
+    name="01 - Primitive"
+    compset="TechLevel"
+    isunique="yes"
+    description="Stone age">
+	
+    <!-- Assign value for TL -->
+    <tag group="TL" tag="1"/>
+
+    </thing>
+	
+<!-- TL 2 -->
+  <thing
+    id="tl2"
+    name="02 - Metalworing"
+    compset="TechLevel"
+    isunique="yes"
+    description="Bronze Age to Middle Ages, swords and steel.">
+	
+    <!-- Assign value for TL -->
+    <tag group="TL" tag="2"/>
+
+    </thing>
+	
+<!-- TL 3 -->
+  <thing
+    id="tl3"
+    name="03 - Renaissance"
+    compset="TechLevel"
+    isunique="yes"
+    description="15th-17th Century Earth. Gunpowder, sailing ships, art.">
+	
+    <!-- Assign value for TL -->
+    <tag group="TL" tag="3"/>
+
+    </thing>
+	
+<!-- TL 4 -->
+  <thing
+    id="tl4"
+    name="04 - Industrial"
+    compset="TechLevel"
+    isunique="yes"
+    description="18th-20th Century Earth, Industrial Revolution, steam, manufacturing.">
+	
+    <!-- Assign value for TL -->
+    <tag group="TL" tag="4"/>
+
+    </thing>
+	
+<!-- TL 5 -->
+  <thing
+    id="tl5"
+    name="05 - Space Faring"
+    compset="TechLevel"
+    isunique="yes"
+    description="Late 20th, Early 21st Century Earth. Systemwide space travel">
+	
+    <!-- Assign value for TL -->
+    <tag group="TL" tag="5"/>
+
+    </thing>
+	
+<!-- TL 6 -->
+  <thing
+    id="tl6"
+    name="06 - Star Faring"
+    compset="TechLevel"
+    isunique="yes"
+    description="Late 21st-30th Century Earth, venturing into space, FTL travel.">
+	
+    <!-- Assign value for TL -->
+    <tag group="TL" tag="6"/>
+
+    </thing>
+	
+<!-- TL 7 -->
+  <thing
+    id="tl7"
+    name="07 - Advanced Interstellar"
+    compset="TechLevel"
+    isunique="yes"
+    description="Far Future Earth, no Time Travel, Transmat">
+	
+    <!-- Assign value for TL -->
+    <tag group="TL" tag="7"/>
+
+    </thing>
+	
+<!-- TL 8 -->
+  <thing
+    id="tl8"
+    name="08 - Time Faring"
+    compset="TechLevel"
+    isunique="yes"
+    description="51st Century Earth">
+	
+    <!-- Assign value for TL -->
+    <tag group="TL" tag="8"/>
+
+    </thing>
+	
+<!-- TL 9 -->
+  <thing
+    id="tl9"
+    name="09 - Advanced Time Faring"
+    compset="TechLevel"
+    isunique="yes"
+    description="Daleks">
+	
+    <!-- Assign value for TL -->
+    <tag group="TL" tag="9"/>
+
+    </thing>
+	
+<!-- TL 10 -->
+  <thing
+    id="tl10"
+    name="10 - Time Lord"
+    compset="TechLevel"
+    isunique="yes"
+    description="Time Lord">
+	
+    <!-- Assign value for TL -->
+    <tag group="TL" tag="10"/>
+
+    </thing>
+	
+<!-- TL 11 -->
+  <thing
+    id="tl11"
+    name="11 - Ancient Time Lord"
+    compset="TechLevel"
+    isunique="yes"
+    description="The Time of Rassilon, Omega and the Death Zoned">
+	
+    <!-- Assign value for TL -->
+    <tag group="TL" tag="11"/>
+
+    </thing>
+	
+<!-- TL 12 -->
+  <thing
+    id="tl12"
+    name="12 - Beyond Comprehension"
+    compset="TechLevel"
+    isunique="yes"
+    description="Technology only available to the Eternals">
+	
+    <!-- Assign value for TL -->
+    <tag group="TL" tag="12"/>
+
+    </thing>
+
+  </document>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of weapons, armor, and shields for the game
+      system. The various effects of each piece of equipment are controlled entirely
+      through field values and a few tags. Scripts on the underlying components use
+      these characteristics to apply all the correct behaviors.
+-->
+
+<document signature="Hero Lab Data">
+
+
+<!-- ##################
+      Armor and Shields
+     ##################
+-->
+
+
+  <!-- Natural armor is automatically equipped -->
+  <thing
+    id="armNatural"
+    name="Natural Armor"
+    compset="Armor"
+    description="Description goes here"
+    isunique="yes"
+    holdable="no">
+    <fieldval field="defDefense" value="1"/>
+    <tag group="Equipment" tag="Natural"/>
+    <tag group="Equipment" tag="AutoEquip"/>
+    </thing>
+
+  <!-- Sample armor -->
+  <thing
+    id="armSample"
+    name="Sample Armor"
+    compset="Armor"
+    description="Description goes here">
+    <fieldval field="defDefense" value="1"/>
+    <fieldval field="defStrReq" value="3"/>
+    <fieldval field="grCost" value="100"/>
+    <fieldval field="gearWeight" value="15"/>
+    </thing>
+
+  <!-- Sample shield -->
+  <thing
+    id="shdSample"
+    name="Sample Shield"
+    compset="Shield"
+    description="Description goes here">
+    <fieldval field="defDefense" value="1"/>
+    <fieldval field="defStrReq" value="0"/>
+    <fieldval field="grCost" value="30"/>
+    <fieldval field="gearWeight" value="5"/>
+    </thing>
+
+
+<!-- ##################
+      Melee Weapons
+     ##################
+-->
+
+
+  <!-- Unarmed Strike melee weapon -->
+  <thing
+    id="wpUnarmed"
+    name="Unarmed Strike"
+    compset="Melee"
+    description="Description goes here"
+    isunique="yes"
+    holdable="no">
+    <fieldval field="shortname" value="Unarmed"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="1d3"/>
+    <fieldval field="wpStrReq" value="0"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="grCost" value="0"/>
+    <fieldval field="gearWeight" value="0"/>
+    <tag group="Equipment" tag="Natural"/>
+    </thing>
+
+  <!-- Sample melee weapon -->
+  <thing
+    id="wpSampleM"
+    name="Sample Melee"
+    compset="Melee"
+    description="Description goes here">
+    <fieldval field="shortname" value=""/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="1d3"/>
+    <fieldval field="wpStrReq" value="0"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="grCost" value="5"/>
+    <fieldval field="gearWeight" value="1"/>
+    <!-- If this is a natural weapon, assign this tag
+    <tag group="Equipment" tag="Natural"/>
+    -->
+    <!-- If this is a two-handed weapon, assign this tag
+    <tag group="Equipment" tag="TwoHand"/>
+    -->
+    </thing>
+
+
+<!-- ##################
+      Ranged Weapons
+     ##################
+-->
+
+
+  <!-- Arrow ranged weapon -->
+  <thing
+    id="wpArrow"
+    name="Arrow"
+    compset="Ranged"
+    description="Description goes here">
+    <fieldval field="shortname" value="Arrow"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="1/3/4"/>
+    <fieldval field="wpShort" value="20"/>
+    <fieldval field="wpMedium" value="30"/>
+    <fieldval field="wpLong" value="40"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="gearWeight" value="4"/>
+    </thing>
+
+  <!-- Crossbow bolt ranged weapon -->
+  <thing
+    id="wpCrossBol"
+    name="Crossbow Bolt"
+    compset="Ranged"
+    description="Description goes here">
+    <fieldval field="shortname" value="Bolt"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="2/4/6"/>
+    <fieldval field="wpShort" value="20"/>
+    <fieldval field="wpMedium" value="30"/>
+    <fieldval field="wpLong" value="40"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="gearWeight" value="4"/>
+    </thing>
+
+	<!-- Flintlock pistol ranged weapon -->
+  <thing
+    id="wpFlintloc"
+    name="Flintlock Pistol"
+    compset="Ranged"
+    description="Description goes here">
+    <fieldval field="shortname" value="Bolt"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="2/4/6"/>
+    <fieldval field="wpShort" value="20"/>
+    <fieldval field="wpMedium" value="30"/>
+    <fieldval field="wpLong" value="40"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="gearWeight" value="4"/>
+    </thing>
+
+  <!-- Pistol (9mm) ranged weapon -->
+  <thing
+    id="wpPistol"
+    name="Pistol (9mm)"
+    compset="Ranged"
+    description="Description goes here">
+    <fieldval field="shortname" value="Pistol"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="2/5/7"/>
+    <fieldval field="wpShort" value="20"/>
+    <fieldval field="wpMedium" value="30"/>
+    <fieldval field="wpLong" value="40"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="gearWeight" value="4"/>
+    </thing>
+
+  <!-- WWII Rifle ranged weapon -->
+  <thing
+    id="wpWWIIRifl"
+    name="WWII Rifle"
+    compset="Ranged"
+    description="Description goes here">
+    <fieldval field="shortname" value="Rifle"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="3/6/9"/>
+    <fieldval field="wpShort" value="20"/>
+    <fieldval field="wpMedium" value="30"/>
+    <fieldval field="wpLong" value="40"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="gearWeight" value="4"/>
+    </thing>
+
+  <!-- Shotgun ranged weapon -->
+  <thing
+    id="wpShotgun"
+    name="Shotgun"
+    compset="Ranged"
+    description="Description goes here">
+    <fieldval field="shortname" value="Rifle"/>
+    <fieldval field="wpBonus" value="0"/>
+    <fieldval field="wpDamage" value="3/7/10"/>
+    <fieldval field="wpShort" value="20"/>
+    <fieldval field="wpMedium" value="30"/>
+    <fieldval field="wpLong" value="40"/>
+    <fieldval field="wpSpecial" value=""/>
+    <fieldval field="gearWeight" value="4"/>
+    </thing>
+
+
+  </document>
